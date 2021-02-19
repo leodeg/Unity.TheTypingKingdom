@@ -19,4 +19,8 @@ public class GameSettingsScritable : ScriptableObject
 	public float hardGameSpeed = 0.8f;
 	public float godGameSpeed = 1.4f;
 
+	[Header("Spawn Words Properties")]
+	public int minWordLength = 4;
+	public int maxWordLength = 8;
+
 }

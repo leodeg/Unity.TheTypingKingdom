@@ -617,14 +617,7 @@ MonoBehaviour:
   inputManager: {fileID: 2146215759}
   gameSettings: {fileID: 11400000, guid: 773581db9f9cf554f97ff83d4a4c714e, type: 2}
   playerStats: {fileID: 11400000, guid: 76b4659cb151bcf4dbebf44d82d175ac, type: 2}
-  qwertyKeyboardJsonEn: {fileID: 4900000, guid: 6444732aae7ca694baa1a55699cf833e,
-    type: 3}
-  qwertyKeyboardJsonRu: {fileID: 4900000, guid: 40d4db033ded8e64c80db9eb48e48246,
-    type: 3}
-  wordsArrayJsonEn: {fileID: 4900000, guid: 66859f284292b274697d5f82d539c378, type: 3}
-  wordsArrayJsonRu: {fileID: 4900000, guid: 3c2c063c6faebd94b852cc669a68a78e, type: 3}
-  minWordLength: 4
-  maxWordLength: 8
+  assetsReferences: {fileID: 11400000, guid: 4236e4ea6c4b6ff4ca76762e9dbe675b, type: 2}
 --- !u!114 &2146215761
 MonoBehaviour:
   m_ObjectHideFlags: 0

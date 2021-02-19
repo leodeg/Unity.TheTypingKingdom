@@ -3,7 +3,8 @@ using UnityEngine.UI;
 
 public class Word
 {
-	public event Action<string> OnTypeLetterUpdate;
+	public event Action<string> OnTypeLetterUpdateGetUnwrittenPart;
+	public event Action<string> OnTypeLetterUpdateGetWrittenPart;
 	public event Action OnTypeLetterFailed;
 	public event Action OnTypeLetterSuccess;
 	public event Action OnCompleteTypingWord;
@@ -34,7 +35,8 @@ public class Word
 			return true;
 		}
 
-		OnTypeLetterUpdate?.Invoke(GetUnwrittenPartOfWord());
+		OnTypeLetterUpdateGetUnwrittenPart?.Invoke(GetUnwrittenPartOfWord());
+		OnTypeLetterUpdateGetWrittenPart?.Invoke(GetWrittenPartOfWord());
 		return true;
 	}
 

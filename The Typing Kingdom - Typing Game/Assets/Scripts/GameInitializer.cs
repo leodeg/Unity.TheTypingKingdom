@@ -30,28 +30,8 @@ public class GameInitializer : MonoBehaviour
 	[SerializeField]
 	private PlayerStatsScriptable playerStats;
 
-	[Header("Assets")]
-
 	[SerializeField]
-	public TextAsset qwertyKeyboardJsonEn;
-
-	[SerializeField]
-	public TextAsset qwertyKeyboardJsonRu;
-
-	[SerializeField]
-	public TextAsset wordsArrayJsonEn;
-
-	[SerializeField]
-	public TextAsset wordsArrayJsonRu;
-
-	[Header("Words Spawning Properties")]
-
-	[SerializeField]
-	private int minWordLength = 4;
-
-	[SerializeField]
-	private int maxWordLength = 8;
-
+	private AssetsReferencesScritable assetsReferences;
 
 	// Local use fields
 	private TextAsset currentDictionaryJson;
@@ -60,6 +40,12 @@ public class GameInitializer : MonoBehaviour
 
 	private void Awake()
 	{
+		if (assetsReferences == null)
+		{
+			Debug.LogError("Assets with dictiinaries is empty!");
+			return;
+		}
+
 		currentTextGenerator = GetTextGenerator();
 
 		if (currentTextGenerator == null)
@@ -104,7 +90,8 @@ public class GameInitializer : MonoBehaviour
 
 		if (gameSettings.gameType == GameType.HandsTraining)
 		{
-			currentDictionaryJson = gameSettings.gameLanguage == GameLanguage.En ? qwertyKeyboardJsonEn : qwertyKeyboardJsonRu;
+			currentDictionaryJson = gameSettings.gameLanguage == GameLanguage.En ?
+				assetsReferences.qwertyKeyboardJsonEn : assetsReferences.qwertyKeyboardJsonRu;
 
 			var keyboard = JsonHelper.ReadFromAsset<KeyboardQWERTY>(currentDictionaryJson.text);
 			if (keyboard == null)
@@ -114,11 +101,13 @@ public class GameInitializer : MonoBehaviour
 			}
 
 			var options = new QWERTYOptions(gameSettings.handType, gameSettings.sectionTypes);
-			textGenerator = new QWERTYTextGenerator(keyboard, options, minWordLength, maxWordLength);
+			textGenerator = new QWERTYTextGenerator(keyboard, options, gameSettings.minWordLength, gameSettings.maxWordLength);
 		}
 		else
 		{
-			currentDictionaryJson = gameSettings.gameLanguage == GameLanguage.En ? wordsArrayJsonEn : wordsArrayJsonRu;
+			currentDictionaryJson = gameSettings.gameLanguage == GameLanguage.En ?
+				assetsReferences.wordsArrayJsonEn : assetsReferences.wordsArrayJsonRu;
+
 			var wordsDictionary = JsonHelper.ReadFromAsset<string[]>(currentDictionaryJson.text);
 			textGenerator = new WordSandboxTextGenerator(wordsDictionary);
 		}

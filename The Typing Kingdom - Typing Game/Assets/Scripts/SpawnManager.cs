@@ -38,7 +38,7 @@ public class SpawnManager : MonoBehaviour
 		wordView.SetText(word.GetFullWord());
 		wordView.target = Target;
 
-		word.OnTypeLetterUpdate += wordView.UpdateText;
+		word.OnTypeLetterUpdateGetUnwrittenPart += wordView.UpdateText;
 		word.OnCompleteTypingWord += wordView.RemoveWord;
 
 		WordsController.Add(word);
