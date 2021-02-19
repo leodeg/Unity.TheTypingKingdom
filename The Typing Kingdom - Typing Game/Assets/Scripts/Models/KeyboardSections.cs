@@ -2,15 +2,12 @@
 
 public class KeyboardSections
 {
-	public ICollection<char> Up { get; } // qwertyuiop
-	public ICollection<char> Middle { get; } // asdfghjkl;
-	public ICollection<char> Down { get; }  // zxcvbnm,.?
-	public ICollection<char> Numbers { get; } // 1234567890
+	public char[] Up { get; } // qwertyuiop
+	public char[] Middle { get; } // asdfghjkl;
+	public char[] Down { get; }  // zxcvbnm,.?
+	public char[] Numbers { get; } // 1234567890
 
-	public KeyboardSections(ICollection<char> up,
-		ICollection<char> middle,
-		ICollection<char> down,
-		ICollection<char> numbers)
+	public KeyboardSections(char[] up, char[] middle, char[] down, char[] numbers)
 	{
 		Up = up;
 		Middle = middle;

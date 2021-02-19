@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 
-public class TextGenerator : ITextGenerator
+public class WordSandboxTextGenerator : ITextGenerator
 {
 	private readonly string[] words;
 
-	public TextGenerator(string[] words)
+	public WordSandboxTextGenerator(string[] words)
 	{
 		this.words = words;
 	}

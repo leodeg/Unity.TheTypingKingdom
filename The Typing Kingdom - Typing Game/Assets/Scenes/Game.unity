@@ -629,5 +629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 4952766982654699987, guid: 2ff5dc11972df7b4f854d30516117f3a, type: 3}
   wordCanvas: {fileID: 1410366608}
+  camera: {fileID: 0}
   minSpawnRadius: 8
   maxSpawnRadius: 12
+  offset: -0.5
