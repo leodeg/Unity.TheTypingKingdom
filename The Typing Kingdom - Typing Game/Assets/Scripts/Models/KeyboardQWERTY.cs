@@ -1,7 +1,10 @@
+﻿using UnityEngine;
+
+[System.Serializable]
 public class KeyboardQWERTY
 {
-	public KeyboardSections LeftHand { get; }
-	public KeyboardSections RightHand { get; }
+	public KeyboardSections LeftHand;
+	public KeyboardSections RightHand;
 
 	public KeyboardQWERTY(KeyboardSections left, KeyboardSections right)
 	{

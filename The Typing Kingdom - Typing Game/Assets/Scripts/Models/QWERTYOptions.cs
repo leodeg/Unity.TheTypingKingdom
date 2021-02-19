@@ -6,7 +6,7 @@ public class QWERTYOptions
 	public QWERTYSectionType SectionType { get; set; }
 
 	public QWERTYOptions(HandType handType = HandType.Both,
-		QWERTYSectionType sectionType = QWERTYSectionType.Up | QWERTYSectionType.Middle | QWERTYSectionType.Down)
+		QWERTYSectionType sectionType = QWERTYSectionType.Up | QWERTYSectionType.Middle)
 	{
 		HandType = handType;
 		SectionType = sectionType;

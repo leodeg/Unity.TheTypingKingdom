@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class QWERTYTextGenerator : ITextGenerator
@@ -11,7 +13,7 @@ public class QWERTYTextGenerator : ITextGenerator
 	private int _minLength;
 	private int _maxLength;
 
-	public QWERTYTextGenerator(KeyboardQWERTY keyboard, QWERTYOptions options, int minLength = 3, int maxLength = 7)
+	public QWERTYTextGenerator(KeyboardQWERTY keyboard, QWERTYOptions options, int minLength = 5, int maxLength = 9)
 	{
 		Keyboard = keyboard;
 		Options = options;
@@ -86,6 +88,6 @@ public class QWERTYTextGenerator : ITextGenerator
 			text[i] = _charactersArray[randomIndex];
 		}
 
-		return text.ToString();
+		return text.ArrayToString();
 	}
 }

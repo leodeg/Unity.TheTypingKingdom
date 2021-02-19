@@ -15,8 +15,20 @@ public class GameInitializer : MonoBehaviour
 	[SerializeField]
 	private InputManager inputController;
 
-	[SerializeReference]
+	[SerializeField]
+	private KeyboardQWERTYScriptable keyboard;
+
+	[SerializeField]
+	public TextAsset jsonFile;
+
+	[SerializeField]
 	private Transform target;
+
+	[SerializeField]
+	private int minWordLength = 4;
+
+	[SerializeField]
+	private int maxWordLength = 8;
 
 	private void Awake()
 	{
@@ -28,10 +40,13 @@ public class GameInitializer : MonoBehaviour
 		inputController.WordsController = wordsController;
 
 		wordsViewGenerator = GetComponent<WordsViewSpawner>();
+		//spawnController.TextGenerator = new FakeTextGenerator();
 		spawnController.WordViewGenerator = wordsViewGenerator;
-		spawnController.TextGenerator = new FakeTextGenerator();
 		spawnController.WordsController = wordsController;
 		spawnController.Target = target;
+
+		var keyboardQWERTY = JsonHelper.ReadFromAsset<KeyboardQWERTY>(jsonFile.text);
+		spawnController.TextGenerator = new QWERTYTextGenerator(keyboardQWERTY, new QWERTYOptions(), minWordLength, maxWordLength);
 	}
 
 	private void Start()

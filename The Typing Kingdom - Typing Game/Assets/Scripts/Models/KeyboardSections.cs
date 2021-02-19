@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
+[System.Serializable]
 public class KeyboardSections
 {
-	public char[] Up { get; } // qwertyuiop
-	public char[] Middle { get; } // asdfghjkl;
-	public char[] Down { get; }  // zxcvbnm,.?
-	public char[] Numbers { get; } // 1234567890
+	public char[] Up; // qwertyuiop
+	public char[] Middle; // asdfghjkl;
+	public char[] Down; // zxcvbnm,.?
+	public char[] Numbers; // 1234567890
 
 	public KeyboardSections(char[] up, char[] middle, char[] down, char[] numbers)
 	{
