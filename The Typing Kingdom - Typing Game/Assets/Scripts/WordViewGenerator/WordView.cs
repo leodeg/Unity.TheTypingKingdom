@@ -1,43 +1,54 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Text))]
 public class WordView : MonoBehaviour
 {
+	public event Action OnCollisionWithTarget;
+
 	public Text word;
-	public float speed = 1f;
 	public Transform target;
+
+	public float speed = 1f;
+	public float collisionDistance = 0.01f;
 
 	private void Start()
 	{
-		word = GetComponent<Text>();
+		if (target == null)
+			Debug.LogError("Target is null. Please assign target!");
+
+		if (word == null)
+			word = GetComponent<Text>();
 	}
 
-	public void SetText (string text)
+	private void Update()
+	{
+		MoveToTarget();
+	}
+
+	private void MoveToTarget()
+	{
+		float step = speed * Time.deltaTime;
+		transform.position = Vector2.MoveTowards(transform.position, target.position, step);
+
+		if (Vector3.Distance(transform.position, target.position) < 0.01f)
+			OnCollisionWithTarget?.Invoke();
+	}
+
+	public void SetText(string text)
 	{
 		word.text = text;
 	}
 
-	public void UpdateText(string text)
+	public void UpdateText(string updatedText)
 	{
-		word.text = text;
+		word.text = updatedText;
 		word.color = Color.red;
 	}
 
 	public void RemoveWord()
 	{
 		Destroy(gameObject);
-	}
-
-	private void Update()
-	{
-		float step = speed * Time.deltaTime;
-		transform.position = Vector2.MoveTowards(transform.position, target.position, step);
-
-		//if (Vector3.Distance(transform.position, target.position) < 0.01f)
-		//{
-
-		//}
 	}
 }

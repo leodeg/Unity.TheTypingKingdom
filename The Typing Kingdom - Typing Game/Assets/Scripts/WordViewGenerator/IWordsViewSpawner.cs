@@ -2,8 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public interface IWordsViewGenerator
+public interface IWordsViewSpawner
 {
-	WordView GenerateView();
+	WordView GenerateWordView();
 	void DeactivateWordView();
 }

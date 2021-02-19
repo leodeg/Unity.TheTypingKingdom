@@ -46,8 +46,8 @@ public class WordsController
 			return;
 
 		Debug.Log($"Letter [{input}] was removed from word {activeWord.GetFullWord()}");
-		Debug.Log($"Written pard: {activeWord.GetWrittenPartOfWord()}");
-		Debug.Log($"Unwritten pard: {activeWord.GetUnwrittenPartOfWord()}");
+		Debug.Log($"Written part: {activeWord.GetWrittenPartOfWord()}");
+		Debug.Log($"Unwritten part: {activeWord.GetUnwrittenPartOfWord()}");
 	}
 
 	private void RemoveActiveWord()

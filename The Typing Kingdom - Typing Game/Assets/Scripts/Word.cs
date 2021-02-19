@@ -37,6 +37,7 @@ public class Word
 		OnTypeLetterUpdate?.Invoke(GetUnwrittenPartOfWord());
 		return true;
 	}
+
 	public bool IsTyped()
 	{
 		return currentLetterIndex >= word.Length;
