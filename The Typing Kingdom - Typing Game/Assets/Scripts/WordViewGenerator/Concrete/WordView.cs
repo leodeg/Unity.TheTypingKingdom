@@ -27,6 +27,11 @@ public class WordView : MonoBehaviour
 		MoveToTarget();
 	}
 
+	public void SetSpeed(float speed)
+	{
+		this.speed = speed;
+	}
+
 	private void MoveToTarget()
 	{
 		float step = speed * Time.deltaTime;

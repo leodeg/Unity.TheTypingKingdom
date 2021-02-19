@@ -14,11 +14,18 @@ public class SpawnManager : MonoBehaviour
 
 	public Transform Target { get; set; }
 
+	public GameSettingsScritable GameSettings { get; set; }
+
 
 	[SerializeField]
 	private float secondsBetweenSpawns = 2f;
-
 	private float elapsedTime = 0.0f;
+	private float currentWordViewSpeed;
+
+	private void Start()
+	{
+		currentWordViewSpeed = GetSpeedByGameDifficulty();
+	}
 
 	void Update()
 	{
@@ -36,11 +43,24 @@ public class SpawnManager : MonoBehaviour
 
 		WordView wordView = WordViewGenerator.GenerateWordView();
 		wordView.SetText(word.GetFullWord());
+		wordView.SetSpeed(currentWordViewSpeed);
 		wordView.target = Target;
 
 		word.OnTypeLetterUpdateGetUnwrittenPart += wordView.UpdateText;
 		word.OnCompleteTypingWord += wordView.RemoveWord;
 
 		WordsController.Add(word);
+	}
+
+	public float GetSpeedByGameDifficulty()
+	{
+		switch (GameSettings.gameDifficulty)
+		{
+			case GameDifficulty.Easy: return GameSettings.easyGameSpeed;
+			case GameDifficulty.Medium: return GameSettings.mediumGameSpeed;
+			case GameDifficulty.Hard: return GameSettings.hardGameSpeed;
+			case GameDifficulty.God: return GameSettings.godGameSpeed;
+			default: return GameSettings.easyGameSpeed;
+		}
 	}
 }

@@ -80,6 +80,7 @@ public class GameInitializer : MonoBehaviour
 		// Spawn Manager
 		spawnManager.WordViewGenerator = GetComponent<WordsViewSpawner>();
 		spawnManager.WordsController = wordsController;
+		spawnManager.GameSettings = gameSettings;
 		spawnManager.TextGenerator = currentTextGenerator;
 		spawnManager.Target = target;
 	}
