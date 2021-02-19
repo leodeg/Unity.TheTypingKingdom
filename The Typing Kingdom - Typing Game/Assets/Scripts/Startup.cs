@@ -1,18 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Startup : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	[SerializeField]
+	private WordSpawnController spawnController;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	[SerializeField]
+	private InputController inputController;
+
+	private void Awake()
+	{
+		var wordsController = new WordsController();
+		spawnController.TextGenerator = new FakeTextGenerator();
+		spawnController.WordController = wordsController;
+		inputController.WordController = wordsController;
+	}
 }
