@@ -6,23 +6,37 @@ using UnityEngine.UI;
 [RequireComponent(typeof(InputManager))]
 public class GameInitializer : MonoBehaviour
 {
+	[Header("Game Objects")]
+
 	[SerializeField]
-	private SpawnManager spawnController;
+	private Transform target;
+
+	[Header("Managers")]
+
+	[SerializeField]
+	private SpawnManager spawnManager;
 
 	[SerializeField]
 	private WordsViewSpawner wordsViewGenerator;
 
 	[SerializeField]
-	private InputManager inputController;
+	private InputManager inputManager;
+
+	[Header("Assets")]
 
 	[SerializeField]
-	private KeyboardQWERTYScriptable keyboard;
+	public TextAsset qwertyKeyboardJsonEn;
 
 	[SerializeField]
-	public TextAsset jsonFile;
+	public TextAsset qwertyKeyboardJsonRu;
 
 	[SerializeField]
-	private Transform target;
+	public TextAsset wordsArrayJsonEn;
+
+	[SerializeField]
+	public TextAsset wordsArrayJsonRu;
+
+	[Header("Words Spawning Properties")]
 
 	[SerializeField]
 	private int minWordLength = 4;
@@ -36,17 +50,24 @@ public class GameInitializer : MonoBehaviour
 
 		var wordsController = new WordsController();
 
-		inputController = GetComponent<InputManager>();
-		inputController.WordsController = wordsController;
+		inputManager = GetComponent<InputManager>();
+		inputManager.WordsController = wordsController;
 
 		wordsViewGenerator = GetComponent<WordsViewSpawner>();
-		//spawnController.TextGenerator = new FakeTextGenerator();
-		spawnController.WordViewGenerator = wordsViewGenerator;
-		spawnController.WordsController = wordsController;
-		spawnController.Target = target;
+		spawnManager.WordViewGenerator = wordsViewGenerator;
+		spawnManager.WordsController = wordsController;
+		spawnManager.Target = target;
 
-		var keyboardQWERTY = JsonHelper.ReadFromAsset<KeyboardQWERTY>(jsonFile.text);
-		spawnController.TextGenerator = new QWERTYTextGenerator(keyboardQWERTY, new QWERTYOptions(), minWordLength, maxWordLength);
+		// Fake word generator
+		//spawnController.TextGenerator = new FakeTextGenerator();
+
+		// QWERTY word generator
+		//var keyboardQWERTY = JsonHelper.ReadFromAsset<KeyboardQWERTY>(qwertyKeyboardJsonEn.text);
+		//spawnManager.TextGenerator = new QWERTYTextGenerator(keyboardQWERTY, new QWERTYOptions(), minWordLength, maxWordLength);
+
+		// Words generator
+		spawnManager.TextGenerator = new WordSandboxTextGenerator(JsonHelper.ReadFromAsset<string[]>(wordsArrayJsonRu.text));
+
 	}
 
 	private void Start()
