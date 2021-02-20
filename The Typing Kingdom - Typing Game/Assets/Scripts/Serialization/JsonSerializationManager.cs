@@ -7,7 +7,7 @@ using UnityEngine;
 using Newtonsoft;
 using Newtonsoft.Json;
 
-public static class JsonHelper
+public static class JsonSerializationManager
 {
 	public static T ReadFromAsset<T>(string json)
 	{

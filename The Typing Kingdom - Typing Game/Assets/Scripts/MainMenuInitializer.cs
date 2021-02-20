@@ -10,7 +10,7 @@ public class MainMenuInitializer : MonoBehaviour
 	private GameSettingsScritable gameSettings;
 
 	[SerializeField]
-	private PlayerStatsScriptable playerStats;
+	private PlayerProfileScriptable playerStats;
 
 
 	private void Awake()

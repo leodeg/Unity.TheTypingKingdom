@@ -19,7 +19,7 @@ public class QWERTYTextGenerator : ITextGenerator
 		Options = options;
 
 		_minLength = minLength;
-		_minLength = maxLength;
+		_maxLength = maxLength;
 
 		AssignCharactersArray();
 	}
@@ -33,16 +33,16 @@ public class QWERTYTextGenerator : ITextGenerator
 	{
 		List<char> characters = new List<char>();
 
-		if (options.HandType == HandType.Both)
+		if (options.HandType == QWERTYHandType.Both)
 		{
 			AssignHand(keyboard.LeftHand, options, characters);
 			AssignHand(keyboard.RightHand, options, characters);
 		}
-		else if (options.HandType == HandType.Left)
+		else if (options.HandType == QWERTYHandType.Left)
 		{
 			AssignHand(keyboard.LeftHand, options, characters);
 		}
-		else if (options.HandType == HandType.Right)
+		else if (options.HandType == QWERTYHandType.Right)
 		{
 			AssignHand(keyboard.RightHand, options, characters);
 		}

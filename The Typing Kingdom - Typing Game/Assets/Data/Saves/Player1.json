@@ -1,0 +1,10 @@
+{
+    "FullName" : "Player1",
+    "SuccessfulWrittenWords" : 0,
+    "FailedWrittenWords" : 0,
+    "SuccessfulInputAttempts": 0,
+    "FailedInputAttempts" : 0,
+    "WPM" : 0,
+    "TotalWordWritten" : 0,
+    "ElapsedTimeInSeconds" : 0
+}

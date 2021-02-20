@@ -54,13 +54,13 @@ public class SpawnManager : MonoBehaviour
 
 	public float GetSpeedByGameDifficulty()
 	{
-		switch (GameSettings.gameDifficulty)
+		switch (GameSettings.settings.gameDifficulty)
 		{
-			case GameDifficulty.Easy: return GameSettings.easyGameSpeed;
-			case GameDifficulty.Medium: return GameSettings.mediumGameSpeed;
-			case GameDifficulty.Hard: return GameSettings.hardGameSpeed;
-			case GameDifficulty.God: return GameSettings.godGameSpeed;
-			default: return GameSettings.easyGameSpeed;
+			case GameDifficulty.Easy: return GameSettings.settings.easyGameSpeed;
+			case GameDifficulty.Medium: return GameSettings.settings.mediumGameSpeed;
+			case GameDifficulty.Hard: return GameSettings.settings.hardGameSpeed;
+			case GameDifficulty.God: return GameSettings.settings.godGameSpeed;
+			default: return GameSettings.settings.easyGameSpeed;
 		}
 	}
 }

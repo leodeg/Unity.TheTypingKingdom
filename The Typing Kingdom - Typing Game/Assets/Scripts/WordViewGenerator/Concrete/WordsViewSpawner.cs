@@ -7,12 +7,7 @@ public class WordsViewSpawner : MonoBehaviour, IWordsViewSpawner
 {
 	public GameObject prefab;
 	public Transform wordCanvas;
-	public Camera camera;
-
-	[SerializeField]
-	private float minSpawnRadius = 5f;
-
-	private float maxSpawnRadius = 7f;
+	public Camera activeCamera;
 
 	[SerializeField]
 	private float offset = 0.1f;
@@ -25,8 +20,8 @@ public class WordsViewSpawner : MonoBehaviour, IWordsViewSpawner
 		if (wordCanvas == null)
 			wordCanvas = GameObject.FindGameObjectWithTag(Tags.GameCanvas).transform;
 
-		if (camera == null)
-			camera = Camera.main;
+		if (activeCamera == null)
+			activeCamera = Camera.main;
 	}
 
 	public WordView GenerateWordView()
@@ -53,20 +48,20 @@ public class WordsViewSpawner : MonoBehaviour, IWordsViewSpawner
 			float upDown = Random.Range(0f, 1f);
 
 			if (upDown <= 0.5)
-				position.y += camera.orthographicSize + offset;
-			else position.y -= camera.orthographicSize + offset;
+				position.y += activeCamera.orthographicSize + offset;
+			else position.y -= activeCamera.orthographicSize + offset;
 
-			position.x = Random.Range(0f, camera.orthographicSize);
+			position.x = Random.Range(0f, activeCamera.orthographicSize);
 		}
 		else // Horizontal
 		{
 			float leftRight = Random.Range(0f, 1f);
 
 			if (leftRight <= 0.5)
-				position.x += camera.orthographicSize * 1.7f + offset;
-			else position.x -= camera.orthographicSize * 1.7f + offset;
+				position.x += activeCamera.orthographicSize * 1.7f + offset;
+			else position.x -= activeCamera.orthographicSize * 1.7f + offset;
 
-			position.y = Random.Range(0f, camera.orthographicSize);
+			position.y = Random.Range(0f, activeCamera.orthographicSize);
 		}
 
 		return position;

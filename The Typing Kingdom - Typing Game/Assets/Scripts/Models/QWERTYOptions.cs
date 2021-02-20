@@ -2,10 +2,10 @@
 
 public class QWERTYOptions
 {
-	public HandType HandType { get; set; }
+	public QWERTYHandType HandType { get; set; }
 	public QWERTYSectionType SectionType { get; set; }
 
-	public QWERTYOptions(HandType handType = HandType.Both,
+	public QWERTYOptions(QWERTYHandType handType = QWERTYHandType.Both,
 		QWERTYSectionType sectionType = QWERTYSectionType.Up | QWERTYSectionType.Middle)
 	{
 		HandType = handType;

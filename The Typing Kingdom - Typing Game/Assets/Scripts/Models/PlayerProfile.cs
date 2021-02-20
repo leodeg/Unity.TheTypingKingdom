@@ -1,19 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "PlayerStats", menuName = "ScriptableObjects/PlayerStats")]
-public class PlayerStatsScriptable : ScriptableObject
+public class PlayerProfile
 {
 	[Header("Player Info")]
-	public string fullName;
+	public string playerName;
 
 	[Header("Written Words Statistics")]
-
 	public int successfulWrittenWords;
 	public int failedWrittenWords;
 
 	[Header("Attempts Statistics")]
-
 	public int successfulInputAttempts;
 	public int failedInputAttempts;
 
@@ -21,12 +20,6 @@ public class PlayerStatsScriptable : ScriptableObject
 	public int WPM;
 	public int totalWordWritten;
 	public int elapsedTimeInSeconds;
-
-	private void OnDisable()
-	{
-		WPM = GetWordsPerMinute();
-		totalWordWritten = GetTotalCountOfWrittenWords();
-	}
 
 	public int GetWordsPerMinute()
 	{
@@ -41,12 +34,12 @@ public class PlayerStatsScriptable : ScriptableObject
 		return Mathf.RoundToInt(wpm);
 	}
 
-	private int GetTotalCountOfWrittenWords()
+	public int GetTotalCountOfWrittenWords()
 	{
 		return successfulWrittenWords + failedWrittenWords;
 	}
 
-	private int GetTotalCountOfInputAttempts()
+	public int GetTotalCountOfInputAttempts()
 	{
 		return successfulInputAttempts + failedInputAttempts;
 	}

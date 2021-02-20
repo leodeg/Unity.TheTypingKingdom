@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c70516a8f37934482f044410d22559, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  gameLanguage: 1
-  gameDifficulty: 0
-  gameType: 1
-  handType: 0
-  sectionTypes: 1
-  easyGameSpeed: 0.3
-  mediumGameSpeed: 0.5
-  hardGameSpeed: 0.8
-  godGameSpeed: 1.4
+  settings:
+    gameLanguage: 0
+    gameDifficulty: 0
+    gameType: 0
+    handType: 0
+    sectionTypes: 1
+    easyGameSpeed: 0.3
+    mediumGameSpeed: 0.5
+    hardGameSpeed: 0.8
+    godGameSpeed: 1.4
+    minWordLength: 4
+    maxWordLength: 8

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(SpawnManager))]
 [RequireComponent(typeof(InputManager))]
+[RequireComponent(typeof(WordsViewSpawner))]
 public class GameInitializer : MonoBehaviour
 {
 	[Header("Game Objects")]
@@ -17,9 +18,6 @@ public class GameInitializer : MonoBehaviour
 	private SpawnManager spawnManager;
 
 	[SerializeField]
-	private WordsViewSpawner wordsViewGenerator;
-
-	[SerializeField]
 	private InputManager inputManager;
 
 	[Header("Game Settings")]
@@ -28,7 +26,7 @@ public class GameInitializer : MonoBehaviour
 	private GameSettingsScritable gameSettings;
 
 	[SerializeField]
-	private PlayerStatsScriptable playerStats;
+	private PlayerProfileScriptable playerStats;
 
 	[SerializeField]
 	private AssetsReferencesScritable assetsReferences;
@@ -36,7 +34,6 @@ public class GameInitializer : MonoBehaviour
 	// Local use fields
 	private TextAsset currentDictionaryJson;
 	private ITextGenerator currentTextGenerator;
-
 
 	private void Awake()
 	{
@@ -85,34 +82,40 @@ public class GameInitializer : MonoBehaviour
 		spawnManager.Target = target;
 	}
 
+	// TODO: create text generator factory
 	private ITextGenerator GetTextGenerator()
 	{
 		ITextGenerator textGenerator;
 
-		if (gameSettings.gameType == GameType.HandsTraining)
-		{
-			currentDictionaryJson = gameSettings.gameLanguage == GameLanguage.En ?
-				assetsReferences.qwertyKeyboardJsonEn : assetsReferences.qwertyKeyboardJsonRu;
-
-			var keyboard = JsonHelper.ReadFromAsset<KeyboardQWERTY>(currentDictionaryJson.text);
-			if (keyboard == null)
-			{
-				Debug.LogError("Cannot find dictionary for qwerty text generation!");
-				return null;
-			}
-
-			var options = new QWERTYOptions(gameSettings.handType, gameSettings.sectionTypes);
-			textGenerator = new QWERTYTextGenerator(keyboard, options, gameSettings.minWordLength, gameSettings.maxWordLength);
-		}
-		else
-		{
-			currentDictionaryJson = gameSettings.gameLanguage == GameLanguage.En ?
-				assetsReferences.wordsArrayJsonEn : assetsReferences.wordsArrayJsonRu;
-
-			var wordsDictionary = JsonHelper.ReadFromAsset<string[]>(currentDictionaryJson.text);
-			textGenerator = new WordSandboxTextGenerator(wordsDictionary);
-		}
+		if (gameSettings.settings.gameType == GameType.HandsTraining)
+			textGenerator = GetQWERTYTextGenerator(gameSettings);
+		else textGenerator = GetWordSandboxTextGenerator(gameSettings);
 
 		return textGenerator;
+	}
+
+	private ITextGenerator GetQWERTYTextGenerator(GameSettingsScritable gameSettings)
+	{
+		currentDictionaryJson = gameSettings.settings.gameLanguage == GameLanguage.En ?
+				assetsReferences.qwertyKeyboardJsonEn : assetsReferences.qwertyKeyboardJsonRu;
+
+		var keyboard = JsonSerializationManager.ReadFromAsset<KeyboardQWERTY>(currentDictionaryJson.text);
+		if (keyboard == null)
+		{
+			Debug.LogError("Cannot find dictionary for qwerty text generation!");
+			return null;
+		}
+
+		var options = new QWERTYOptions(gameSettings.settings.handType, gameSettings.settings.sectionTypes);
+		return new QWERTYTextGenerator(keyboard, options, gameSettings.settings.minWordLength, gameSettings.settings.maxWordLength);
+	}
+
+	private ITextGenerator GetWordSandboxTextGenerator(GameSettingsScritable gameSettings)
+	{
+		currentDictionaryJson = gameSettings.settings.gameLanguage == GameLanguage.En ?
+				assetsReferences.wordsArrayJsonEn : assetsReferences.wordsArrayJsonRu;
+
+		var wordsDictionary = JsonSerializationManager.ReadFromAsset<string[]>(currentDictionaryJson.text);
+		return new WordSandboxTextGenerator(wordsDictionary);
 	}
 }
