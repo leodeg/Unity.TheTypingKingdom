@@ -32,7 +32,6 @@ public class GameInitializer : MonoBehaviour
 	private AssetsReferencesScritable assetsReferences;
 
 	// Local use fields
-	private TextAsset currentDictionaryJson;
 	private ITextGenerator currentTextGenerator;
 
 	private void Awake()
@@ -43,7 +42,8 @@ public class GameInitializer : MonoBehaviour
 			return;
 		}
 
-		currentTextGenerator = GetTextGenerator();
+		var textGeneratorFactory = new TextGeneratorFactory(gameSettings.settings, assetsReferences.assetsReferences);
+		currentTextGenerator = textGeneratorFactory.GetTextGenerator();
 
 		if (currentTextGenerator == null)
 		{
@@ -80,42 +80,5 @@ public class GameInitializer : MonoBehaviour
 		spawnManager.GameSettings = gameSettings;
 		spawnManager.TextGenerator = currentTextGenerator;
 		spawnManager.Target = target;
-	}
-
-	// TODO: create text generator factory
-	private ITextGenerator GetTextGenerator()
-	{
-		ITextGenerator textGenerator;
-
-		if (gameSettings.settings.gameType == GameType.HandsTraining)
-			textGenerator = GetQWERTYTextGenerator(gameSettings);
-		else textGenerator = GetWordSandboxTextGenerator(gameSettings);
-
-		return textGenerator;
-	}
-
-	private ITextGenerator GetQWERTYTextGenerator(GameSettingsScritable gameSettings)
-	{
-		currentDictionaryJson = gameSettings.settings.gameLanguage == GameLanguage.En ?
-				assetsReferences.qwertyKeyboardJsonEn : assetsReferences.qwertyKeyboardJsonRu;
-
-		var keyboard = JsonSerializationManager.ReadFromAsset<KeyboardQWERTY>(currentDictionaryJson.text);
-		if (keyboard == null)
-		{
-			Debug.LogError("Cannot find dictionary for qwerty text generation!");
-			return null;
-		}
-
-		var options = new QWERTYOptions(gameSettings.settings.handType, gameSettings.settings.sectionTypes);
-		return new QWERTYTextGenerator(keyboard, options, gameSettings.settings.minWordLength, gameSettings.settings.maxWordLength);
-	}
-
-	private ITextGenerator GetWordSandboxTextGenerator(GameSettingsScritable gameSettings)
-	{
-		currentDictionaryJson = gameSettings.settings.gameLanguage == GameLanguage.En ?
-				assetsReferences.wordsArrayJsonEn : assetsReferences.wordsArrayJsonRu;
-
-		var wordsDictionary = JsonSerializationManager.ReadFromAsset<string[]>(currentDictionaryJson.text);
-		return new WordSandboxTextGenerator(wordsDictionary);
 	}
 }
