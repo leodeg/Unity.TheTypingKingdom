@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992b6d57d73652a4fa54624d29a7de35, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  name: 
-  successfulWrittenWords: 0
-  failedWrittenWords: 0
-  successfulInputAttempts: 0
-  failedInputAttempts: 0
+  playerProfile:
+    playerName: 
+    successfulWrittenWords: 0
+    failedWrittenWords: 0
+    successfulInputAttempts: 0
+    failedInputAttempts: 0
+    WPM: 0
+    totalWordWritten: 0
+    elapsedTimeInSeconds: 0

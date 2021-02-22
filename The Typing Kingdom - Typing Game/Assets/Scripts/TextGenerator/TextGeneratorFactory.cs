@@ -25,7 +25,12 @@ public class TextGeneratorFactory
 		return textGenerator;
 	}
 
-	public ITextGenerator GetQWERTYTextGenerator(GameSettings gameSettings)
+	public ITextGenerator GetQWERTYTextGenerator ()
+	{
+		return GetQWERTYTextGenerator(gameSettings);
+	}
+
+	private ITextGenerator GetQWERTYTextGenerator(GameSettings gameSettings)
 	{
 		currentDictionaryJson = gameSettings.gameLanguage == GameLanguage.En ?
 				assetsReferences.qwertyKeyboardJsonEn : assetsReferences.qwertyKeyboardJsonRu;
@@ -41,7 +46,12 @@ public class TextGeneratorFactory
 		return new QWERTYTextGenerator(keyboard, options, gameSettings.minWordLength, gameSettings.maxWordLength);
 	}
 
-	public ITextGenerator GetWordSandboxTextGenerator(GameSettings gameSettings)
+	public ITextGenerator GetWordSandboxTextGenerator()
+	{
+		return GetWordSandboxTextGenerator(gameSettings);
+	}
+
+	private ITextGenerator GetWordSandboxTextGenerator(GameSettings gameSettings)
 	{
 		currentDictionaryJson = gameSettings.gameLanguage == GameLanguage.En ?
 				assetsReferences.wordsArrayJsonEn : assetsReferences.wordsArrayJsonRu;

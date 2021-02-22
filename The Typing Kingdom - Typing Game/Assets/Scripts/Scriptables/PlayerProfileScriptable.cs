@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "PlayerStats", menuName = "ScriptableObjects/PlayerStats")]
+[CreateAssetMenu(fileName = "PlayerProfile", menuName = "ScriptableObjects/PlayerProfile")]
 public class PlayerProfileScriptable : ScriptableObject
 {
 	[SerializeField]
