@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-public class QWERTYOptions
+﻿public class QWERTYOptions
 {
 	public QWERTYHandType HandType { get; set; }
 	public QWERTYSectionType SectionType { get; set; }

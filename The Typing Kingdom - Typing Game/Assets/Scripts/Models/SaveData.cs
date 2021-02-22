@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-
-[System.Serializable]
+﻿[System.Serializable]
 public class SaveData
 {
 	private static SaveData instance;

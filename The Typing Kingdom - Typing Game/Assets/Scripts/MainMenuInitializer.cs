@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(GameDataManager))]
 [RequireComponent(typeof(PlayerProfilesManager))]

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class PlayerProfilesManager : MonoBehaviour
 {
@@ -15,6 +9,17 @@ public class PlayerProfilesManager : MonoBehaviour
 	public PlayerProfile CurrenPlayerProfile { get; set; }
 
 	public UnityEvent OnCreateNewProfile;
+
+	public IEnumerable<string> GetListOfProfilesNames()
+	{
+		return SaveData.Instance.PlayerProfiles.GetPlayerProfilesNames();
+	}
+
+	public void AssignCurrentPlayerProfile(string playerName)
+	{
+		CurrenPlayerProfile = FindPlayerProfile(playerName);
+		Debug.Log(CurrenPlayerProfile.playerName);
+	}
 
 	public PlayerProfile FindPlayerProfile(string playerName)
 	{

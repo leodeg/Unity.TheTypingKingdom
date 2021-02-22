@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class TextGeneratorFactory
 {
@@ -25,7 +23,7 @@ public class TextGeneratorFactory
 		return textGenerator;
 	}
 
-	public ITextGenerator GetQWERTYTextGenerator ()
+	public ITextGenerator GetQWERTYTextGenerator()
 	{
 		return GetQWERTYTextGenerator(gameSettings);
 	}

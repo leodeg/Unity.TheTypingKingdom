@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class GameDataManager : MonoBehaviour
 {

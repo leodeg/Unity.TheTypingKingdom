@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
-[System.Serializable]
+﻿[System.Serializable]
 public class KeyboardSections
 {
 	public char[] Up; // qwertyuiop
