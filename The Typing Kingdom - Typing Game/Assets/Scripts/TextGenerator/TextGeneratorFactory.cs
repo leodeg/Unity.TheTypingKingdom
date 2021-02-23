@@ -16,7 +16,7 @@ public class TextGeneratorFactory
 	{
 		ITextGenerator textGenerator;
 
-		if (gameSettings.gameType == GameType.HandsTraining)
+		if (gameSettings.GameType == GameType.HandsTraining)
 			textGenerator = GetQWERTYTextGenerator(gameSettings);
 		else textGenerator = GetWordSandboxTextGenerator(gameSettings);
 
@@ -30,7 +30,7 @@ public class TextGeneratorFactory
 
 	private ITextGenerator GetQWERTYTextGenerator(GameSettings gameSettings)
 	{
-		currentDictionaryJson = gameSettings.gameLanguage == GameLanguage.En ?
+		currentDictionaryJson = gameSettings.GameLanguage == GameLanguage.En ?
 				assetsReferences.qwertyKeyboardJsonEn : assetsReferences.qwertyKeyboardJsonRu;
 
 		var keyboard = JsonSerializationManager.ReadFromAsset<KeyboardQWERTY>(currentDictionaryJson.text);
@@ -40,8 +40,8 @@ public class TextGeneratorFactory
 			return null;
 		}
 
-		var options = new QWERTYOptions(gameSettings.handType, gameSettings.sectionTypes);
-		return new QWERTYTextGenerator(keyboard, options, gameSettings.minWordLength, gameSettings.maxWordLength);
+		var options = new QWERTYOptions(gameSettings.HandType, gameSettings.SectionTypes);
+		return new QWERTYTextGenerator(keyboard, options, gameSettings.MinWordLength, gameSettings.MaxWordLength);
 	}
 
 	public ITextGenerator GetWordSandboxTextGenerator()
@@ -51,7 +51,7 @@ public class TextGeneratorFactory
 
 	private ITextGenerator GetWordSandboxTextGenerator(GameSettings gameSettings)
 	{
-		currentDictionaryJson = gameSettings.gameLanguage == GameLanguage.En ?
+		currentDictionaryJson = gameSettings.GameLanguage == GameLanguage.En ?
 				assetsReferences.wordsArrayJsonEn : assetsReferences.wordsArrayJsonRu;
 
 		var wordsDictionary = JsonSerializationManager.ReadFromAsset<string[]>(currentDictionaryJson.text);

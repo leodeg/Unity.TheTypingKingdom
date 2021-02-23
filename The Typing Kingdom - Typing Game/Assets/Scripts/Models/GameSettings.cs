@@ -4,21 +4,33 @@
 public class GameSettings
 {
 	[Header("Game Properties")]
-	public GameLanguage gameLanguage;
-	public GameDifficulty gameDifficulty;
+	[SerializeField] private GameLanguage gameLanguage;
+	[SerializeField] private GameDifficulty gameDifficulty;
 
 	[Header("Spawn Properties")]
-	public GameType gameType;
-	public QWERTYHandType handType;
-	public QWERTYSectionType sectionTypes = QWERTYSectionType.AllLetters;
+	[SerializeField] private GameType gameType;
+	[SerializeField] private QWERTYHandType handType;
+	[SerializeField] private QWERTYSectionType sectionTypes = QWERTYSectionType.AllLetters;
 
 	[Header("Difficulty Properties")]
-	public float easyGameSpeed = 0.3f;
-	public float mediumGameSpeed = 0.5f;
-	public float hardGameSpeed = 0.8f;
-	public float godGameSpeed = 1.4f;
+	[SerializeField] private float easyGameSpeed = 0.3f;
+	[SerializeField] private float mediumGameSpeed = 0.5f;
+	[SerializeField] private float hardGameSpeed = 0.8f;
+	[SerializeField] private float godGameSpeed = 1.4f;
 
 	[Header("Spawn Words Properties")]
-	public int minWordLength = 4;
-	public int maxWordLength = 8;
+	[SerializeField] private int minWordLength = 4;
+	[SerializeField] private int maxWordLength = 8;
+
+	public GameLanguage GameLanguage { get => gameLanguage; set => gameLanguage = value; }
+	public GameDifficulty GameDifficulty { get => gameDifficulty; set => gameDifficulty = value; }
+	public GameType GameType { get => gameType; set => gameType = value; }
+	public QWERTYHandType HandType { get => handType; set => handType = value; }
+	public QWERTYSectionType SectionTypes { get => sectionTypes; set => sectionTypes = value; }
+	public float EasyGameSpeed { get => easyGameSpeed; set => easyGameSpeed = value; }
+	public float MediumGameSpeed { get => mediumGameSpeed; set => mediumGameSpeed = value; }
+	public float HardGameSpeed { get => hardGameSpeed; set => hardGameSpeed = value; }
+	public float GodGameSpeed { get => godGameSpeed; set => godGameSpeed = value; }
+	public int MinWordLength { get => minWordLength; set => minWordLength = value; }
+	public int MaxWordLength { get => maxWordLength; set => maxWordLength = value; }
 }

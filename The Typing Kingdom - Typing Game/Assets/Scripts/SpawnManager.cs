@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 [Serializable]
 public class SpawnManager : MonoBehaviour
@@ -52,13 +54,14 @@ public class SpawnManager : MonoBehaviour
 
 	public float GetSpeedByGameDifficulty()
 	{
-		switch (GameSettings.settings.gameDifficulty)
+		switch (GameSettings.settings.GameDifficulty)
 		{
-			case GameDifficulty.Easy: return GameSettings.settings.easyGameSpeed;
-			case GameDifficulty.Medium: return GameSettings.settings.mediumGameSpeed;
-			case GameDifficulty.Hard: return GameSettings.settings.hardGameSpeed;
-			case GameDifficulty.God: return GameSettings.settings.godGameSpeed;
-			default: return GameSettings.settings.easyGameSpeed;
+			case GameDifficulty.Easy: return GameSettings.settings.EasyGameSpeed;
+			case GameDifficulty.Medium: return GameSettings.settings.MediumGameSpeed;
+			case GameDifficulty.Hard: return GameSettings.settings.HardGameSpeed;
+			case GameDifficulty.God: return GameSettings.settings.GodGameSpeed;
+			default: return GameSettings.settings.EasyGameSpeed;
 		}
 	}
 }
+
