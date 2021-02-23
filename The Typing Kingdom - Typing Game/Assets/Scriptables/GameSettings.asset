@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     gameLanguage: 0
-    gameDifficulty: 3
+    gameDifficulty: 0
     gameType: 1
     handType: 0
     sectionTypes: 1
@@ -22,5 +22,9 @@ MonoBehaviour:
     mediumGameSpeed: 0.5
     hardGameSpeed: 0.8
     godGameSpeed: 1.4
+    easyGameDamage: 10
+    mediumGameDamage: 20
+    hardGameDamage: 30
+    godGameDamage: 40
     minWordLength: 2
     maxWordLength: 8

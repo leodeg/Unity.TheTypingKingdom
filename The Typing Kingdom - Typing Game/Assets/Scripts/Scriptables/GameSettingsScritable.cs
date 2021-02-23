@@ -1,7 +1,6 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 [System.Serializable]
 [CreateAssetMenu(fileName = "GameSettings", menuName = "ScriptableObjects/GameSettings")]
@@ -9,7 +8,7 @@ public class GameSettingsScritable : ScriptableObject
 {
 	public GameSettings settings;
 
-	public void SetHandTrainingMode ()
+	public void SetHandTrainingMode()
 	{
 		settings.GameType = GameType.HandsTraining;
 	}

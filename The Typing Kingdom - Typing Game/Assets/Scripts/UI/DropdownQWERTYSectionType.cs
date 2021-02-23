@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Linq;
-using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 [Serializable]
 public class UnityEventQWERTYSectionType : UnityEvent<QWERTYSectionType> { }

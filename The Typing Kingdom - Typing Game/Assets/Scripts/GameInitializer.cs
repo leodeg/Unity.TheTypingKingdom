@@ -8,7 +8,10 @@ public class GameInitializer : MonoBehaviour
 	[Header("Game Objects")]
 
 	[SerializeField]
-	private Transform target;
+	private Transform targetTransform;
+
+	[SerializeField]
+	private Target target;
 
 	[Header("Managers")]
 
@@ -55,8 +58,8 @@ public class GameInitializer : MonoBehaviour
 
 	private void AssignComponents()
 	{
-		if (target == null)
-			target = GameObject.FindGameObjectWithTag(Tags.Player).transform;
+		if (targetTransform == null)
+			targetTransform = GameObject.FindGameObjectWithTag(Tags.Player).transform;
 
 		if (inputManager == null)
 			inputManager = GetComponent<InputManager>();
@@ -77,6 +80,7 @@ public class GameInitializer : MonoBehaviour
 		spawnManager.WordsController = wordsController;
 		spawnManager.GameSettings = gameSettings;
 		spawnManager.TextGenerator = currentTextGenerator;
+		spawnManager.TargetTransform = targetTransform;
 		spawnManager.Target = target;
 	}
 }

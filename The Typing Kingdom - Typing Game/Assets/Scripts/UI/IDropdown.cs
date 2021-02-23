@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.UI;
-
-public interface IDropdown
+﻿public interface IDropdown
 {
 	void IndexChanged();
 	void AddOption(string text);

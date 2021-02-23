@@ -211,7 +211,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b938a05ac57b68448bca492e4c474023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnCollisionWithTarget:
+    m_PersistentCalls:
+      m_Calls: []
   word: {fileID: 4952766980899655064}
   target: {fileID: 0}
-  speed: 0.4
   collisionDistance: 0.05

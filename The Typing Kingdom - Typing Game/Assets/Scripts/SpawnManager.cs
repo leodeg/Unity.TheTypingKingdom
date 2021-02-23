@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 [Serializable]
 public class SpawnManager : MonoBehaviour
@@ -12,7 +10,8 @@ public class SpawnManager : MonoBehaviour
 
 	public IWordsViewSpawner WordViewGenerator { get; set; }
 
-	public Transform Target { get; set; }
+	public Transform TargetTransform { get; set; }
+	public Target Target { get; set; }
 
 	public GameSettingsScritable GameSettings { get; set; }
 
@@ -21,10 +20,12 @@ public class SpawnManager : MonoBehaviour
 	private float secondsBetweenSpawns = 2f;
 	private float elapsedTime = 0.0f;
 	private float currentWordViewSpeed;
+	private int currentWordViewDamage;
 
 	private void Start()
 	{
-		currentWordViewSpeed = GetSpeedByGameDifficulty();
+		currentWordViewSpeed = GameSettings.settings.GetSpeedByGameDifficulty();
+		currentWordViewDamage = GameSettings.settings.GetDamageByGameDifficulty();
 	}
 
 	void Update()
@@ -44,24 +45,16 @@ public class SpawnManager : MonoBehaviour
 		WordView wordView = WordViewGenerator.GenerateWordView();
 		wordView.SetText(word.GetFullWord());
 		wordView.SetSpeed(currentWordViewSpeed);
-		wordView.target = Target;
+		wordView.SetDamage(currentWordViewDamage);
+		wordView.target = TargetTransform;
+		wordView.currentWord = word;
 
+		wordView.OnCollisionWithDamageReturn += Target.AddDamage;
+		wordView.OnCollisionWithWordReturn += WordsController.RemoveWord;
 		word.OnTypeLetterUpdateGetUnwrittenPart += wordView.UpdateText;
 		word.OnCompleteTypingWord += wordView.RemoveWord;
 
 		WordsController.Add(word);
-	}
-
-	public float GetSpeedByGameDifficulty()
-	{
-		switch (GameSettings.settings.GameDifficulty)
-		{
-			case GameDifficulty.Easy: return GameSettings.settings.EasyGameSpeed;
-			case GameDifficulty.Medium: return GameSettings.settings.MediumGameSpeed;
-			case GameDifficulty.Hard: return GameSettings.settings.HardGameSpeed;
-			case GameDifficulty.God: return GameSettings.settings.GodGameSpeed;
-			default: return GameSettings.settings.EasyGameSpeed;
-		}
 	}
 }
 

@@ -18,6 +18,11 @@ public class GameSettings
 	[SerializeField] private float hardGameSpeed = 0.8f;
 	[SerializeField] private float godGameSpeed = 1.4f;
 
+	[SerializeField] private int easyGameDamage = 10;
+	[SerializeField] private int mediumGameDamage = 20;
+	[SerializeField] private int hardGameDamage = 30;
+	[SerializeField] private int godGameDamage = 40;
+
 	[Header("Spawn Words Properties")]
 	[SerializeField] private int minWordLength = 4;
 	[SerializeField] private int maxWordLength = 8;
@@ -27,10 +32,41 @@ public class GameSettings
 	public GameType GameType { get => gameType; set => gameType = value; }
 	public QWERTYHandType HandType { get => handType; set => handType = value; }
 	public QWERTYSectionType SectionTypes { get => sectionTypes; set => sectionTypes = value; }
+
+	public int EasyGameDamage { get => easyGameDamage; set => easyGameDamage = value; }
+	public int MediumGameDamage { get => mediumGameDamage; set => mediumGameDamage = value; }
+	public int HardGameDamage { get => hardGameDamage; set => hardGameDamage = value; }
+	public int GodGameDamage { get => godGameDamage; set => godGameDamage = value; }
+
 	public float EasyGameSpeed { get => easyGameSpeed; set => easyGameSpeed = value; }
 	public float MediumGameSpeed { get => mediumGameSpeed; set => mediumGameSpeed = value; }
 	public float HardGameSpeed { get => hardGameSpeed; set => hardGameSpeed = value; }
 	public float GodGameSpeed { get => godGameSpeed; set => godGameSpeed = value; }
+
 	public int MinWordLength { get => minWordLength; set => minWordLength = value; }
 	public int MaxWordLength { get => maxWordLength; set => maxWordLength = value; }
+
+	public float GetSpeedByGameDifficulty()
+	{
+		switch (GameDifficulty)
+		{
+			case GameDifficulty.Easy: return EasyGameSpeed;
+			case GameDifficulty.Medium: return MediumGameSpeed;
+			case GameDifficulty.Hard: return HardGameSpeed;
+			case GameDifficulty.God: return GodGameSpeed;
+			default: return EasyGameSpeed;
+		}
+	}
+
+	public int GetDamageByGameDifficulty()
+	{
+		switch (GameDifficulty)
+		{
+			case GameDifficulty.Easy: return EasyGameDamage;
+			case GameDifficulty.Medium: return MediumGameDamage;
+			case GameDifficulty.Hard: return HardGameDamage;
+			case GameDifficulty.God: return GodGameDamage;
+			default: return EasyGameDamage;
+		}
+	}
 }

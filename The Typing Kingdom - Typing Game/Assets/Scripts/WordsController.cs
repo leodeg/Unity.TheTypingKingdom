@@ -61,4 +61,11 @@ public class WordsController
 		words.Remove(activeWord);
 		activeWord = null;
 	}
+
+	public void RemoveWord(Word word)
+	{
+		words.Remove(word);
+		if (activeWord == word)
+			activeWord = null;
+	}
 }
