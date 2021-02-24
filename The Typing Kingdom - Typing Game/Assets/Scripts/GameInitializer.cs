@@ -3,6 +3,8 @@
 [RequireComponent(typeof(SpawnManager))]
 [RequireComponent(typeof(InputManager))]
 [RequireComponent(typeof(WordsViewSpawner))]
+[RequireComponent(typeof(Timer))]
+[RequireComponent(typeof(PauseManager))]
 public class GameInitializer : MonoBehaviour
 {
 	[Header("Game Objects")]
@@ -21,6 +23,15 @@ public class GameInitializer : MonoBehaviour
 	[SerializeField]
 	private InputManager inputManager;
 
+	[SerializeField]
+	private EventsManager eventsManager;
+
+	[SerializeField]
+	private PauseManager pauseManager;
+
+	[SerializeField]
+	private Timer timer;
+
 	[Header("Game Settings")]
 
 	[SerializeField]
@@ -37,7 +48,6 @@ public class GameInitializer : MonoBehaviour
 	[SerializeField]
 	private AssetsReferencesScritable assetsReferences;
 
-	// Local use fields
 	private ITextGenerator currentTextGenerator;
 
 	private void Awake()
@@ -57,8 +67,18 @@ public class GameInitializer : MonoBehaviour
 			return;
 		}
 
+		target.CurrentDamage = gameSettings.settings.GetDamageByGameDifficulty();
+
+		AssignPlayerProfileEventsToManager();
+		AssignTargetEventsToManager();
+
+		AssignPauseEventsFromManager();
+
 		AssignComponents();
 		AssignCompomnentsReferences();
+
+
+		timer.OnTick.AddListener(spawnManager.Spawn);
 	}
 
 	private void AssignComponents()
@@ -71,6 +91,9 @@ public class GameInitializer : MonoBehaviour
 
 		if (spawnManager == null)
 			spawnManager = GetComponent<SpawnManager>();
+
+		if (timer == null)
+			timer = GetComponent<Timer>();
 	}
 
 	private void AssignCompomnentsReferences()
@@ -81,11 +104,31 @@ public class GameInitializer : MonoBehaviour
 		inputManager.WordsController = wordsController;
 
 		// Spawn Manager
+		spawnManager.Initalize();
 		spawnManager.WordViewGenerator = GetComponent<WordsViewSpawner>();
 		spawnManager.WordsController = wordsController;
-		spawnManager.GameSettings = gameSettings;
 		spawnManager.TextGenerator = currentTextGenerator;
 		spawnManager.TargetTransform = targetTransform;
-		spawnManager.Target = target;
+		spawnManager.CurrentWordViewSpeed = gameSettings.settings.GetSpeedByGameDifficulty();
+	}
+
+	private void AssignPlayerProfileEventsToManager()
+	{
+		eventsManager.OnTypeLetterSuccess.AddListener(playerProfileForGameScene.IncreaseSucessType);
+		eventsManager.OnTypeLetterFailed.AddListener(playerProfileForGameScene.IncreaseUnsucessType);
+
+		eventsManager.OnWrittenWordWithoutErrors.AddListener(playerProfileForGameScene.IncreaseWrittenWordsWithoutErrors);
+		eventsManager.OnWrittenWordWithErrors.AddListener(playerProfileForGameScene.IncreaseWrittenWordsWithErrors);
+	}
+
+	private void AssignTargetEventsToManager()
+	{
+		eventsManager.OnTargetCollisionWithWords.AddListener(target.AddDamage);
+	}
+
+	private void AssignPauseEventsFromManager()
+	{
+		pauseManager.OnPaused.AddListener(() => eventsManager.OnGamePaused?.Invoke());
+		pauseManager.OnResume.AddListener(() => eventsManager.OnGameResume?.Invoke());
 	}
 }

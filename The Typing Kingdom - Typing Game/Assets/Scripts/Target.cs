@@ -11,6 +11,12 @@ public class Target : MonoBehaviour
 	public int HitPoints { get => hitPoints; set => hitPoints = value; }
 	public bool IsTargetDead => hitPoints <= 0;
 
+	public int CurrentDamage { get; set; }
+
+	public void AddDamage()
+	{
+		AddDamage(CurrentDamage);
+	}
 
 	public void AddDamage(int damage)
 	{

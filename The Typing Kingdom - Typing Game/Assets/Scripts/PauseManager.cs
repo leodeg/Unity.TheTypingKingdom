@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class PauseManager : MonoBehaviour
 {
+	public UnityEvent OnPaused;
+	public UnityEvent OnResume;
+
 	private bool isPaused = false;
 
 	public void PauseGame()

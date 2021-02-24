@@ -1,43 +1,25 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [Serializable]
 public class SpawnManager : MonoBehaviour
 {
 	public WordsController WordsController { get; set; }
 
+	public EventsManager EventsManager { get; set; }
+
 	public ITextGenerator TextGenerator { get; set; }
 
 	public IWordsViewSpawner WordViewGenerator { get; set; }
 
 	public Transform TargetTransform { get; set; }
-	public Target Target { get; set; }
 
-	public GameSettingsScritable GameSettings { get; set; }
+	public float CurrentWordViewSpeed { get; set; }
 
-	public PlayerProfileScriptable PlayerProfileForGameScene { get; set; }
-
-
-	[SerializeField]
-	private float secondsBetweenSpawns = 2f;
-	private float elapsedTime = 0.0f;
-	private float currentWordViewSpeed;
-	private int currentWordViewDamage;
-
-	private void Start()
+	public void Initalize ()
 	{
-		currentWordViewSpeed = GameSettings.settings.GetSpeedByGameDifficulty();
-		currentWordViewDamage = GameSettings.settings.GetDamageByGameDifficulty();
-	}
-
-	void Update()
-	{
-		elapsedTime += Time.deltaTime;
-		if (elapsedTime > secondsBetweenSpawns)
-		{
-			elapsedTime = 0;
-			Spawn();
-		}
+		WordsController.OnTypeLetterFailed += () => EventsManager.OnTypeLetterFailed?.Invoke();
 	}
 
 	public void Spawn()
@@ -46,24 +28,30 @@ public class SpawnManager : MonoBehaviour
 
 		WordView wordView = WordViewGenerator.GenerateWordView();
 		wordView.SetText(word.GetFullWord());
-		wordView.SetSpeed(currentWordViewSpeed);
-		wordView.SetDamage(currentWordViewDamage);
+		wordView.SetSpeed(CurrentWordViewSpeed);
 		wordView.target = TargetTransform;
-		wordView.currentWord = word;
 
-		wordView.OnCollisionWithDamageReturn += Target.AddDamage;
-		wordView.OnCollisionWithWordReturn += WordsController.RemoveWord;
-
-		word.OnTypeLetterUpdateGetUnwrittenPart += wordView.UpdateText;
-		word.OnCompleteTypingWord += wordView.RemoveWord;
-
-		word.OnTypeLetterSuccess += PlayerProfileForGameScene.IncreaseSucessType;
-		word.OnTypeLetterFailed += PlayerProfileForGameScene.IncreaseUnsucessType;
-
-		word.OnWrittenWordWithoutErrors += PlayerProfileForGameScene.IncreaseWrittenWordsWithoutErrors;
-		word.OnWrittenWordWithErrors += PlayerProfileForGameScene.IncreaseWrittenWordsWithErrors;
+		AssignWordViewEvents(wordView, word);
+		AssignWordEvents(word, wordView);
 
 		WordsController.Add(word);
 	}
-}
 
+	private void AssignWordViewEvents(WordView wordView, Word word)
+	{
+		wordView.OnCollisionWithTarget.AddListener(() => WordsController.RemoveWord(word));
+		wordView.OnCollisionWithTarget.AddListener(() => EventsManager.OnTargetCollisionWithWords?.Invoke());
+	}
+
+	private void AssignWordEvents(Word word, WordView wordView)
+	{
+		word.OnTypeLetterUpdateGetUnwrittenPart += wordView.UpdateText;
+		word.OnCompleteTypingWord += wordView.RemoveWord;
+
+		word.OnTypeLetterSuccess += () => EventsManager.OnTypeLetterSuccess?.Invoke();
+		word.OnTypeLetterFailed += () => EventsManager.OnTypeLetterFailed?.Invoke();
+
+		word.OnWrittenWordWithoutErrors += () => EventsManager.OnWrittenWordWithoutErrors?.Invoke();
+		word.OnWrittenWordWithErrors += () => EventsManager.OnWrittenWordWithErrors?.Invoke();
+	}
+}
