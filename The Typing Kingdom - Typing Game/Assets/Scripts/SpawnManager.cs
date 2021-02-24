@@ -1,8 +1,5 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
-[Serializable]
 public class SpawnManager : MonoBehaviour
 {
 	public WordsController WordsController { get; set; }
@@ -17,7 +14,7 @@ public class SpawnManager : MonoBehaviour
 
 	public float CurrentWordViewSpeed { get; set; }
 
-	public void Initalize ()
+	public void Initalize()
 	{
 		WordsController.OnTypeLetterFailed += () => EventsManager.OnTypeLetterFailed?.Invoke();
 	}
@@ -53,5 +50,10 @@ public class SpawnManager : MonoBehaviour
 
 		word.OnWrittenWordWithoutErrors += () => EventsManager.OnWrittenWordWithoutErrors?.Invoke();
 		word.OnWrittenWordWithErrors += () => EventsManager.OnWrittenWordWithErrors?.Invoke();
+
+		// Events for VFX effects
+		word.OnTypeLetterFailed += () => EventsManager.OnTypeLetterFailedReturnTransform?.Invoke(wordView.transform);
+		word.OnTypeLetterSuccess += () => EventsManager.OnTypeLetterSuccessReturnTransform?.Invoke(wordView.transform);
+		word.OnCompleteTypingWord += () => EventsManager.OnCompleteWordReturnTransform?.Invoke(wordView.transform);
 	}
 }

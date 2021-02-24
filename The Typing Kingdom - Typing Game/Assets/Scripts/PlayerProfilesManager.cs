@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
+// TODO: Don't destroy on load
 public class PlayerProfilesManager : MonoBehaviour
 {
 	public string CurrentPlayerName { get; set; }
@@ -12,7 +13,7 @@ public class PlayerProfilesManager : MonoBehaviour
 
 	public IEnumerable<string> GetListOfProfilesNames()
 	{
-		return SaveData.Instance.PlayerProfiles.GetPlayerProfilesNames();
+		return GameData.Instance.PlayerProfiles.GetPlayerProfilesNames();
 	}
 
 	public void AssignCurrentPlayerProfile(string playerName)
@@ -24,7 +25,7 @@ public class PlayerProfilesManager : MonoBehaviour
 	public PlayerProfile FindPlayerProfile(string playerName)
 	{
 		PlayerProfile playerProfile;
-		SaveData.Instance.PlayerProfiles.TryGetPlayerProfile(playerName, out playerProfile);
+		GameData.Instance.PlayerProfiles.TryGetPlayerProfile(playerName, out playerProfile);
 		return playerProfile;
 	}
 
@@ -41,11 +42,11 @@ public class PlayerProfilesManager : MonoBehaviour
 
 	public void CreateNewProfile(string playerName)
 	{
-		CurrenPlayerProfile = SaveData.Instance.PlayerProfiles.CreateOrFindPlayerProfile(playerName);
+		CurrenPlayerProfile = GameData.Instance.PlayerProfiles.CreateOrFindPlayerProfile(playerName);
 		CurrentPlayerName = playerName;
 		OnCreateNewProfile?.Invoke();
 
 		Debug.Log(CurrenPlayerProfile.playerName);
-		Debug.Log(SaveData.Instance.PlayerProfiles.GetPlayerProfiles().Count());
+		Debug.Log(GameData.Instance.PlayerProfiles.GetPlayerProfiles().Count());
 	}
 }

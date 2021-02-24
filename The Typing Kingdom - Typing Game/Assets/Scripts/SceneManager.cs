@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class SceneManager : MonoBehaviour
 {
+	public UnityEvent OnLoadMainMenu;
+	public UnityEvent OnLoadGameScene;
+
 	private void Awake()
 	{
 		DontDestroyOnLoad(this);

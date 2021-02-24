@@ -23,6 +23,8 @@ public class GameSettings
 	[SerializeField] private int hardGameDamage = 30;
 	[SerializeField] private int godGameDamage = 40;
 
+	[SerializeField] private int secondsBetweenSpawns = 2;
+
 	[Header("Spawn Words Properties")]
 	[SerializeField] private int minWordLength = 4;
 	[SerializeField] private int maxWordLength = 8;
@@ -42,6 +44,8 @@ public class GameSettings
 	public float MediumGameSpeed { get => mediumGameSpeed; set => mediumGameSpeed = value; }
 	public float HardGameSpeed { get => hardGameSpeed; set => hardGameSpeed = value; }
 	public float GodGameSpeed { get => godGameSpeed; set => godGameSpeed = value; }
+
+	public int SecondsBetweenSpawns { get => secondsBetweenSpawns; set => secondsBetweenSpawns = value; }
 
 	public int MinWordLength { get => minWordLength; set => minWordLength = value; }
 	public int MaxWordLength { get => maxWordLength; set => maxWordLength = value; }

@@ -67,16 +67,14 @@ public class GameInitializer : MonoBehaviour
 			return;
 		}
 
-		target.CurrentDamage = gameSettings.settings.GetDamageByGameDifficulty();
-
-		AssignPlayerProfileEventsToManager();
-		AssignTargetEventsToManager();
-
-		AssignPauseEventsFromManager();
-
+		// Components
 		AssignComponents();
 		AssignCompomnentsReferences();
 
+		// Events
+		AssignPlayerProfileEventsToManager();
+		AssignTargetEventsToManager();
+		AssignPauseEventsFromManager();
 
 		timer.OnTick.AddListener(spawnManager.Spawn);
 	}
@@ -100,6 +98,12 @@ public class GameInitializer : MonoBehaviour
 	{
 		var wordsController = new WordsController();
 
+		//Timer
+		timer.SecondsBetweenSpawns = gameSettings.settings.SecondsBetweenSpawns;
+
+		// Target
+		target.CurrentDamage = gameSettings.settings.GetDamageByGameDifficulty();
+
 		// Input Manager
 		inputManager.WordsController = wordsController;
 
@@ -110,12 +114,13 @@ public class GameInitializer : MonoBehaviour
 		spawnManager.TextGenerator = currentTextGenerator;
 		spawnManager.TargetTransform = targetTransform;
 		spawnManager.CurrentWordViewSpeed = gameSettings.settings.GetSpeedByGameDifficulty();
+		spawnManager.EventsManager = eventsManager;
 	}
 
 	private void AssignPlayerProfileEventsToManager()
 	{
-		eventsManager.OnTypeLetterSuccess.AddListener(playerProfileForGameScene.IncreaseSucessType);
-		eventsManager.OnTypeLetterFailed.AddListener(playerProfileForGameScene.IncreaseUnsucessType);
+		eventsManager.OnTypeLetterSuccess.AddListener(playerProfileForGameScene.IncreaseTypeLetterSuccess);
+		eventsManager.OnTypeLetterFailed.AddListener(playerProfileForGameScene.IncreaseTypeLetterFailed);
 
 		eventsManager.OnWrittenWordWithoutErrors.AddListener(playerProfileForGameScene.IncreaseWrittenWordsWithoutErrors);
 		eventsManager.OnWrittenWordWithErrors.AddListener(playerProfileForGameScene.IncreaseWrittenWordsWithErrors);

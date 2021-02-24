@@ -1,10 +1,10 @@
 ﻿[System.Serializable]
-public class SaveData
+public class GameData
 {
-	private static SaveData instance;
+	private static GameData instance;
 	private static object locker = new object();
 
-	public static SaveData Instance
+	public static GameData Instance
 	{
 		set
 		{
@@ -20,7 +20,7 @@ public class SaveData
 			lock (locker)
 			{
 				if (instance == null)
-					instance = new SaveData();
+					instance = new GameData();
 				return instance;
 			}
 		}

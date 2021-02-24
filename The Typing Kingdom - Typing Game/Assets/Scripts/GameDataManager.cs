@@ -6,11 +6,11 @@ public class GameDataManager : MonoBehaviour
 
 	public void SaveGameData()
 	{
-		BinarySerializationManager.Save(DefaultSaveFileName, SaveData.Instance);
+		BinarySerializationManager.Save(DefaultSaveFileName, GameData.Instance);
 	}
 
 	public void LoadGameData()
 	{
-		SaveData.Instance = BinarySerializationManager.Load(DefaultSaveFileName) as SaveData;
+		GameData.Instance = BinarySerializationManager.Load(DefaultSaveFileName) as GameData;
 	}
 }

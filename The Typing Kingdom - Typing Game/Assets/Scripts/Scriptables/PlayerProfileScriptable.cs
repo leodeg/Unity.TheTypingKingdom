@@ -29,7 +29,7 @@ public class PlayerProfileScriptable : ScriptableObject
 		playerProfile.elapsedTimeInSeconds += seconds;
 	}
 
-	public void IncreaseSucessType()
+	public void IncreaseTypeLetterSuccess()
 	{
 		++playerProfile.successfulInputAttempts;
 	}
@@ -39,7 +39,7 @@ public class PlayerProfileScriptable : ScriptableObject
 		++playerProfile.successfulWrittenWords;
 	}
 
-	public void IncreaseUnsucessType()
+	public void IncreaseTypeLetterFailed()
 	{
 		++playerProfile.failedInputAttempts;
 	}

@@ -1,13 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class Timer : MonoBehaviour
 {
 	public UnityEvent OnTick;
 
-	[SerializeField]
-	private float secondsBetweenSpawns = 2f;
+	private float secondsBetweenSpawns = 2;
 	private float elapsedTime = 0.0f;
 
 	public float SecondsBetweenSpawns { get => secondsBetweenSpawns; set => secondsBetweenSpawns = value; }
