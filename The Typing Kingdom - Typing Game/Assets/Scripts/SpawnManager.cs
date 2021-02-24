@@ -15,6 +15,8 @@ public class SpawnManager : MonoBehaviour
 
 	public GameSettingsScritable GameSettings { get; set; }
 
+	public PlayerProfileScriptable PlayerProfileForGameScene { get; set; }
+
 
 	[SerializeField]
 	private float secondsBetweenSpawns = 2f;
@@ -51,8 +53,15 @@ public class SpawnManager : MonoBehaviour
 
 		wordView.OnCollisionWithDamageReturn += Target.AddDamage;
 		wordView.OnCollisionWithWordReturn += WordsController.RemoveWord;
+
 		word.OnTypeLetterUpdateGetUnwrittenPart += wordView.UpdateText;
 		word.OnCompleteTypingWord += wordView.RemoveWord;
+
+		word.OnTypeLetterSuccess += PlayerProfileForGameScene.IncreaseSucessType;
+		word.OnTypeLetterFailed += PlayerProfileForGameScene.IncreaseUnsucessType;
+
+		word.OnWrittenWordWithoutErrors += PlayerProfileForGameScene.IncreaseWrittenWordsWithoutErrors;
+		word.OnWrittenWordWithErrors += PlayerProfileForGameScene.IncreaseWrittenWordsWithErrors;
 
 		WordsController.Add(word);
 	}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     gameLanguage: 0
-    gameDifficulty: 0
+    gameDifficulty: 3
     gameType: 1
     handType: 0
     sectionTypes: 1

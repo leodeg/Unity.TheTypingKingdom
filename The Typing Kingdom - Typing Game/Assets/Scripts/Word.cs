@@ -4,12 +4,18 @@ public class Word
 {
 	public event Action<string> OnTypeLetterUpdateGetUnwrittenPart;
 	public event Action<string> OnTypeLetterUpdateGetWrittenPart;
+
 	public event Action OnTypeLetterFailed;
 	public event Action OnTypeLetterSuccess;
+
+	public event Action OnWrittenWordWithoutErrors;
+	public event Action OnWrittenWordWithErrors;
+
 	public event Action OnCompleteTypingWord;
 
 	private string word;
 	private int currentLetterIndex;
+	private bool isWordWrittenWithError = false;
 
 	public Word(string word)
 	{
@@ -21,6 +27,7 @@ public class Word
 	{
 		if (GetCurrentLetter() != letter)
 		{
+			isWordWrittenWithError = true;
 			OnTypeLetterFailed?.Invoke();
 			return false;
 		}
@@ -31,6 +38,11 @@ public class Word
 		if (IsTyped())
 		{
 			OnCompleteTypingWord?.Invoke();
+
+			if (isWordWrittenWithError)
+				OnWrittenWordWithErrors?.Invoke();
+			else OnWrittenWordWithoutErrors?.Invoke();
+
 			return true;
 		}
 

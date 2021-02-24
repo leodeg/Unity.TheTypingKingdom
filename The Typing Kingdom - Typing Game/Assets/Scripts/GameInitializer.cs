@@ -27,7 +27,12 @@ public class GameInitializer : MonoBehaviour
 	private GameSettingsScritable gameSettings;
 
 	[SerializeField]
-	private PlayerProfileScriptable playerStats;
+	[Tooltip("Reference to a player profile of the currently active player. This info will be saved to the game data.")]
+	private PlayerProfileScriptable activePlayerProfile;
+
+	[SerializeField]
+	[Tooltip("Temporary player profile for saving game state information. This profile will be trigger events for UI.")]
+	private PlayerProfileScriptable playerProfileForGameScene;
 
 	[SerializeField]
 	private AssetsReferencesScritable assetsReferences;

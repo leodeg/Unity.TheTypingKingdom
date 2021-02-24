@@ -13,6 +13,4 @@ public class KeyboardSections
 		Down = down;
 		Numbers = numbers;
 	}
-
-	//TODO: Get random characters from up, middle, down and numbers
 }

@@ -1,5 +1,4 @@
-﻿
-public enum GameLanguage
+﻿public enum GameLanguage
 {
 	En,
 	Ru
