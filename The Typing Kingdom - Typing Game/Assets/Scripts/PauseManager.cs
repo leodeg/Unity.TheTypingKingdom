@@ -16,7 +16,7 @@ public class PauseManager : MonoBehaviour
 
 	public void ResumeGame()
 	{
-		Time.timeScale = 0;
+		Time.timeScale = 1;
 		isPaused = false;
 	}
 
