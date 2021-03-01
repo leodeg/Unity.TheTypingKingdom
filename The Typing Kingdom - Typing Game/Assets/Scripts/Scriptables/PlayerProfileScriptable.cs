@@ -8,11 +8,7 @@ public class PlayerProfileScriptable : ScriptableObject
 	[SerializeField]
 	private PlayerProfile playerProfile;
 
-	public UnityEvent OnSuccessType;
-	public UnityEvent OnUnsuccessType;
-	public UnityEvent OnCompleteWord;
-
-	public PlayerProfile PlayerStats
+	public PlayerProfile PlayerProfile
 	{
 		get { return playerProfile; }
 		set { playerProfile = value; }

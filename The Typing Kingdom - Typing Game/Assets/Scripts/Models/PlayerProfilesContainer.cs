@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 
 [System.Serializable]
@@ -55,5 +56,29 @@ public class PlayerProfilesContainer
 
 		playerProfiles.Add(playerName, playerProfile);
 		return true;
+	}
+
+	public bool UpdateValue (string playerName, PlayerProfile newValue)
+	{
+		if (playerProfiles.ContainsKey(playerName))
+		{
+			playerProfiles[playerName] = newValue;
+			return true;
+		}
+
+		return false;
+	}
+
+	public override string ToString()
+	{
+		var builder = new StringBuilder();
+
+		foreach (var playerProfile in playerProfiles.Values)
+		{
+			builder.Append(playerProfile.ToString());
+			builder.AppendLine();
+		}
+
+		return builder.ToString();
 	}
 }

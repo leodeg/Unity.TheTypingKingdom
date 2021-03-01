@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: PF_Active
   m_EditorClassIdentifier: 
   playerProfile:
-    playerName: 
-    successfulWrittenWords: 0
-    failedWrittenWords: 0
-    successfulInputAttempts: 0
-    failedInputAttempts: 0
+    playerName: Player 1
+    successfulWrittenWords: 1
+    failedWrittenWords: 5
+    successfulInputAttempts: 20
+    failedInputAttempts: 1
     WPM: 0
-    totalWordWritten: 0
+    totalWordWritten: 6
     elapsedTimeInSeconds: 0

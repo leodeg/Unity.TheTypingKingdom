@@ -4,7 +4,7 @@
 [RequireComponent(typeof(InputManager))]
 [RequireComponent(typeof(WordsViewSpawner))]
 [RequireComponent(typeof(Timer))]
-[RequireComponent(typeof(PauseManager))]
+[RequireComponent(typeof(TimeCounter))]
 public class GameInitializer : MonoBehaviour
 {
 	[Header("Game Objects")]
@@ -30,7 +30,16 @@ public class GameInitializer : MonoBehaviour
 	private PauseManager pauseManager;
 
 	[SerializeField]
+	private GameDataManager gameDataManager;
+
+	[SerializeField]
+	private PlayerProfilesManager playerProfilesManager;
+
+	[SerializeField]
 	private Timer timer;
+
+	[SerializeField]
+	private TimeCounter timeCounter;
 
 	[Header("Game Settings")]
 
@@ -52,6 +61,20 @@ public class GameInitializer : MonoBehaviour
 
 	private void Awake()
 	{
+		if (activePlayerProfile == null)
+		{
+			Debug.LogError("Active player profile is empty");
+			return;
+		}
+
+		if (playerProfileForGameScene == null)
+		{
+			Debug.LogError("Temprory player profile is empty");
+			return;
+		}
+
+		playerProfileForGameScene.PlayerProfile = new PlayerProfile();
+
 		if (assetsReferences == null)
 		{
 			Debug.LogError("Assets with dictiinaries is empty!");
@@ -92,6 +115,9 @@ public class GameInitializer : MonoBehaviour
 
 		if (timer == null)
 			timer = GetComponent<Timer>();
+
+		if (timeCounter == null)
+			timeCounter = GetComponent<TimeCounter>();
 	}
 
 	private void AssignCompomnentsReferences()
@@ -108,13 +134,13 @@ public class GameInitializer : MonoBehaviour
 		inputManager.WordsController = wordsController;
 
 		// Spawn Manager
-		spawnManager.Initalize();
 		spawnManager.WordViewGenerator = GetComponent<WordsViewSpawner>();
 		spawnManager.WordsController = wordsController;
 		spawnManager.TextGenerator = currentTextGenerator;
 		spawnManager.TargetTransform = targetTransform;
 		spawnManager.CurrentWordViewSpeed = gameSettings.settings.GetSpeedByGameDifficulty();
 		spawnManager.EventsManager = eventsManager;
+		spawnManager.Initalize();
 	}
 
 	private void AssignPlayerProfileEventsToManager()
@@ -128,6 +154,7 @@ public class GameInitializer : MonoBehaviour
 
 	private void AssignTargetEventsToManager()
 	{
+		target.OnTargetDeath.AddListener(() => eventsManager.OnGameEnd?.Invoke());
 		eventsManager.OnTargetCollisionWithWords.AddListener(target.AddDamage);
 	}
 
@@ -135,5 +162,16 @@ public class GameInitializer : MonoBehaviour
 	{
 		pauseManager.OnPaused.AddListener(() => eventsManager.OnGamePaused?.Invoke());
 		pauseManager.OnResume.AddListener(() => eventsManager.OnGameResume?.Invoke());
+	}
+
+	public void SaveGameResultsToGameData ()
+	{
+		playerProfileForGameScene.PlayerProfile.elapsedTimeInSeconds = Mathf.RoundToInt(timeCounter.TimePassed);
+
+		activePlayerProfile.PlayerProfile.AddStats(playerProfileForGameScene.PlayerProfile);
+
+		playerProfilesManager.UpdateProfile(activePlayerProfile.PlayerProfile.playerName, activePlayerProfile.PlayerProfile);
+
+		gameDataManager.SaveGameData();
 	}
 }

@@ -30,12 +30,10 @@ public class MainMenuInitializer : MonoBehaviour
 		if (activePlayerProfile == null)
 			Debug.LogError("Active player profile scriptable is empty!");
 
-		gameDataManager.LoadGameData();
-	}
+		if (sceneManager == null)
+			sceneManager = GetComponent<SceneManager>();
 
-	private void Start()
-	{
-		sceneManager.OnLoadGameScene.AddListener(SavePlayerProfileToScriptable);
+		gameDataManager.LoadGameData();
 	}
 
 	public void SavePlayerProfileToScriptable()
@@ -52,6 +50,6 @@ public class MainMenuInitializer : MonoBehaviour
 			return;
 		}
 
-		activePlayerProfile.PlayerStats = playerProfilesManager.CurrenPlayerProfile;
+		activePlayerProfile.PlayerProfile = playerProfilesManager.CurrenPlayerProfile;
 	}
 }

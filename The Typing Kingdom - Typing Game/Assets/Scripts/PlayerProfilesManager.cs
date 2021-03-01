@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
 
-// TODO: Don't destroy on load
 public class PlayerProfilesManager : MonoBehaviour
 {
 	public string CurrentPlayerName { get; set; }
@@ -48,5 +48,15 @@ public class PlayerProfilesManager : MonoBehaviour
 
 		Debug.Log(CurrenPlayerProfile.playerName);
 		Debug.Log(GameData.Instance.PlayerProfiles.GetPlayerProfiles().Count());
+	}
+
+	public void UpdateProfile (string playerName, PlayerProfile newProfileInfo)
+	{
+		GameData.Instance.PlayerProfiles.UpdateValue(playerName, newProfileInfo);
+	}
+
+	public override string ToString()
+	{
+		return GameData.Instance.PlayerProfiles.ToString();
 	}
 }
