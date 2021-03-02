@@ -2,8 +2,8 @@
 
 public class Word
 {
-	public event Action<string> OnTypeLetterUpdateGetUnwrittenPart;
-	public event Action<string> OnTypeLetterUpdateGetWrittenPart;
+	public event Action<string> OnTypeLetterUpdateReturnUnwrittenPart;
+	public event Action<string> OnTypeLetterUpdateReturnWrittenPart;
 
 	public event Action OnTypeLetterFailed;
 	public event Action OnTypeLetterSuccess;
@@ -46,8 +46,8 @@ public class Word
 			return true;
 		}
 
-		OnTypeLetterUpdateGetUnwrittenPart?.Invoke(GetUnwrittenPartOfWord());
-		OnTypeLetterUpdateGetWrittenPart?.Invoke(GetWrittenPartOfWord());
+		OnTypeLetterUpdateReturnUnwrittenPart?.Invoke(GetUnwrittenPartOfWord());
+		OnTypeLetterUpdateReturnWrittenPart?.Invoke(GetWrittenPartOfWord());
 		return true;
 	}
 

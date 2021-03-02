@@ -42,7 +42,7 @@ public class SpawnManager : MonoBehaviour
 
 	private void AssignWordEvents(Word word, WordView wordView)
 	{
-		word.OnTypeLetterUpdateGetUnwrittenPart += wordView.UpdateText;
+		word.OnTypeLetterUpdateReturnUnwrittenPart += wordView.UpdateText;
 		word.OnCompleteTypingWord += wordView.RemoveWord;
 
 		word.OnTypeLetterSuccess += () => EventsManager.OnTypeLetterSuccess?.Invoke();

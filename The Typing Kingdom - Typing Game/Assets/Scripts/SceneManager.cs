@@ -8,11 +8,13 @@ public class SceneManager : MonoBehaviour
 
 	public void LoadMenuScene()
 	{
+		OnLoadMainMenu?.Invoke();
 		UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
 	}
 
 	public void LoadGameScene()
 	{
+		OnLoadGameScene?.Invoke();
 		UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
 	}
 }
