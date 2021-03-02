@@ -1,5 +1,5 @@
 ﻿public interface IWordsViewSpawner
 {
-	WordView GenerateWordView();
+	WordView InstantiateWordView();
 	void DeactivateWordView(); // For objects pool pattern
 }

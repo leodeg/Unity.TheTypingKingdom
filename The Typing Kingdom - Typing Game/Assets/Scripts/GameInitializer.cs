@@ -123,6 +123,7 @@ public class GameInitializer : MonoBehaviour
 	private void AssignCompomnentsReferences()
 	{
 		var wordsController = new WordsController();
+		wordsController.OnTypeLetterFailed += () => eventsManager.OnTypeLetterFailed?.Invoke();
 
 		//Timer
 		timer.SecondsBetweenSpawns = gameSettings.settings.SecondsBetweenSpawns;
@@ -133,14 +134,16 @@ public class GameInitializer : MonoBehaviour
 		// Input Manager
 		inputManager.WordsController = wordsController;
 
+		// WordsViewSpawner
+		var spawner = GetComponent<WordsViewSpawner>();
+		spawner.target = targetTransform;
+		spawner.wordViewSpeed = gameSettings.settings.GetSpeedByGameDifficulty();
+
 		// Spawn Manager
 		spawnManager.WordViewGenerator = GetComponent<WordsViewSpawner>();
 		spawnManager.WordsController = wordsController;
 		spawnManager.TextGenerator = currentTextGenerator;
-		spawnManager.TargetTransform = targetTransform;
-		spawnManager.CurrentWordViewSpeed = gameSettings.settings.GetSpeedByGameDifficulty();
 		spawnManager.EventsManager = eventsManager;
-		spawnManager.Initalize();
 	}
 
 	private void AssignPlayerProfileEventsToManager()

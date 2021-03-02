@@ -10,23 +10,12 @@ public class SpawnManager : MonoBehaviour
 
 	public IWordsViewSpawner WordViewGenerator { get; set; }
 
-	public Transform TargetTransform { get; set; }
-
-	public float CurrentWordViewSpeed { get; set; }
-
-	public void Initalize()
-	{
-		WordsController.OnTypeLetterFailed += () => EventsManager.OnTypeLetterFailed?.Invoke();
-	}
-
 	public void Spawn()
 	{
 		Word word = new Word(TextGenerator.GenerateText());
 
-		WordView wordView = WordViewGenerator.GenerateWordView();
+		WordView wordView = WordViewGenerator.InstantiateWordView();
 		wordView.SetText(word.GetFullWord());
-		wordView.SetSpeed(CurrentWordViewSpeed);
-		wordView.target = TargetTransform;
 
 		AssignWordViewEvents(wordView, word);
 		AssignWordEvents(word, wordView);
@@ -36,7 +25,7 @@ public class SpawnManager : MonoBehaviour
 
 	private void AssignWordViewEvents(WordView wordView, Word word)
 	{
-		wordView.OnCollisionWithTarget.AddListener(() => WordsController.RemoveWord(word));
+		wordView.OnCollisionWithTarget.AddListener(() => WordsController.RemoveWord(word)); // Don't forget delete word from list
 		wordView.OnCollisionWithTarget.AddListener(() => EventsManager.OnTargetCollisionWithWords?.Invoke());
 	}
 
@@ -51,7 +40,7 @@ public class SpawnManager : MonoBehaviour
 		word.OnWrittenWordWithoutErrors += () => EventsManager.OnWrittenWordWithoutErrors?.Invoke();
 		word.OnWrittenWordWithErrors += () => EventsManager.OnWrittenWordWithErrors?.Invoke();
 
-		// Events for VFX effects
+		// Events for VFX effects at word view position
 		word.OnTypeLetterFailed += () => EventsManager.OnTypeLetterFailedReturnTransform?.Invoke(wordView.transform);
 		word.OnTypeLetterSuccess += () => EventsManager.OnTypeLetterSuccessReturnTransform?.Invoke(wordView.transform);
 		word.OnCompleteTypingWord += () => EventsManager.OnCompleteWordReturnTransform?.Invoke(wordView.transform);

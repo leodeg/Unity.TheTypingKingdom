@@ -4,6 +4,11 @@ public class WordsViewSpawner : MonoBehaviour, IWordsViewSpawner
 {
 	public GameObject prefab;
 
+	public Transform target;
+
+	public float wordViewSpeed;
+
+
 	[Tooltip("Parent canvas transform")]
 	public Transform wordCanvas;
 
@@ -29,12 +34,17 @@ public class WordsViewSpawner : MonoBehaviour, IWordsViewSpawner
 		PositionGenerator = new Vector3PositionGeneratorOutsideCameraView(activeCamera, offset);
 	}
 
-	public WordView GenerateWordView()
+	public WordView InstantiateWordView()
 	{
 		//Vector3 randomPosition = RandomPointOnUnitCircle(Random.Range(minSpawnRadius, maxSpawnRadius));
 		Vector3 randomPosition = PositionGenerator.GeneratePosition();
 
 		GameObject wordObject = Instantiate(prefab, randomPosition, Quaternion.identity, wordCanvas);
+
+		var wordViewComponent = wordObject.GetComponent<WordView>();
+		wordViewComponent.SetSpeed(wordViewSpeed);
+		wordViewComponent.target = target;
+
 		return wordObject.GetComponent<WordView>();
 	}
 
