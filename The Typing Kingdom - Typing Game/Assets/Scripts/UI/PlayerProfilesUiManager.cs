@@ -38,6 +38,7 @@ public class PlayerProfilesUiManager : MonoBehaviour
 
 			gameObject.GetComponent<Button>().onClick.AddListener(() => playerProfilesManager.AssignCurrentPlayerProfile(profileName));
 			gameObject.GetComponent<Button>().onClick.AddListener(() => OnClickProfileButton?.Invoke());
+			gameObject.GetComponent<Button>().onClick.AddListener(() => ViewManager.Show<MainMenuView>());
 		}
 	}
 }

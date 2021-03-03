@@ -46,6 +46,17 @@ public class ViewManager : MonoBehaviour
 		return null;
 	}
 
+	public static void Hide<T>() where T : View
+	{
+		for (int i = 0; i < instance.views.Length; i++)
+		{
+			if (instance.views[i] is T)
+			{
+				instance.views[i].Hide();
+			}
+		}
+	}
+
 	public static void Show<T>(bool remember = true) where T : View
 	{
 		for (int i = 0; i < instance.views.Length; i++)
