@@ -59,7 +59,7 @@ public class PlayerProfile
 
 	public override string ToString()
 	{
-		return $"Player name: {playerName} \n" +
+		return $"{playerName} \n" +
 			$"SuccessfulWrittenWords: {successfulWrittenWords} \n" +
 			$"FailedWrittenWords: {failedWrittenWords} \n" +
 			$"SuccessfulInputAttempts: {successfulInputAttempts} \n" +

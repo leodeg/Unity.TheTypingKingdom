@@ -137,7 +137,7 @@ public class GameInitializer : MonoBehaviour
 		// WordsViewSpawner
 		var spawner = GetComponent<WordsViewSpawner>();
 		spawner.target = targetTransform;
-		spawner.wordViewSpeed = gameSettings.settings.GetSpeedByGameDifficulty();
+		spawner.wordViewMovingSpeed = gameSettings.settings.GetSpeedByGameDifficulty();
 
 		// Spawn Manager
 		spawnManager.WordViewGenerator = GetComponent<WordsViewSpawner>();

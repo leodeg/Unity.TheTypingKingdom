@@ -76,7 +76,7 @@ public class PlayerProfilesContainer
 		foreach (var playerProfile in playerProfiles.Values)
 		{
 			builder.Append(playerProfile.ToString());
-			builder.AppendLine();
+			builder.AppendLine("\n");
 		}
 
 		return builder.ToString();

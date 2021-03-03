@@ -1,4 +1,5 @@
 ﻿
+[System.Serializable]
 public class Singleton<T> where T : new()
 {
 	public static T instance { get; set; }
@@ -19,7 +20,7 @@ public class Singleton<T> where T : new()
 			lock (locker)
 			{
 				if (instance == null)
-					instance = new T();
+					instance = System.Activator.CreateInstance<T>();
 				return instance;
 			}
 		}

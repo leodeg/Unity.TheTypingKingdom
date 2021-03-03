@@ -6,7 +6,7 @@ public class WordsViewSpawner : MonoBehaviour, IWordsViewSpawner
 
 	public Transform target;
 
-	public float wordViewSpeed;
+	public float wordViewMovingSpeed;
 
 
 	[Tooltip("Parent canvas transform")]
@@ -36,16 +36,14 @@ public class WordsViewSpawner : MonoBehaviour, IWordsViewSpawner
 
 	public WordView InstantiateWordView()
 	{
-		//Vector3 randomPosition = RandomPointOnUnitCircle(Random.Range(minSpawnRadius, maxSpawnRadius));
 		Vector3 randomPosition = PositionGenerator.GeneratePosition();
-
 		GameObject wordObject = Instantiate(prefab, randomPosition, Quaternion.identity, wordCanvas);
 
-		var wordViewComponent = wordObject.GetComponent<WordView>();
-		wordViewComponent.SetSpeed(wordViewSpeed);
-		wordViewComponent.target = target;
+		var wordView = wordObject.GetComponent<WordView>();
+		wordView.SetSpeed(wordViewMovingSpeed);
+		wordView.target = target;
 
-		return wordObject.GetComponent<WordView>();
+		return wordView;
 	}
 
 	public void DeactivateWordView()
