@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -50,7 +49,7 @@ public class PlayerProfilesManager : MonoBehaviour
 		Debug.Log(GameData.Instance.PlayerProfiles.GetPlayerProfiles().Count());
 	}
 
-	public void UpdateProfile (string playerName, PlayerProfile newProfileInfo)
+	public void UpdateProfile(string playerName, PlayerProfile newProfileInfo)
 	{
 		GameData.Instance.PlayerProfiles.UpdateValue(playerName, newProfileInfo);
 	}

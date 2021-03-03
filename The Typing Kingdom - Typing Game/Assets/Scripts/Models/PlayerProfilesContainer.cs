@@ -58,7 +58,7 @@ public class PlayerProfilesContainer
 		return true;
 	}
 
-	public bool UpdateValue (string playerName, PlayerProfile newValue)
+	public bool UpdateValue(string playerName, PlayerProfile newValue)
 	{
 		if (playerProfiles.ContainsKey(playerName))
 		{

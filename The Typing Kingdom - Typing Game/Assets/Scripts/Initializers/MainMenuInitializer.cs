@@ -35,21 +35,4 @@ public class MainMenuInitializer : MonoBehaviour
 
 		gameDataManager.LoadGameData();
 	}
-
-	public void SavePlayerProfileToScriptable()
-	{
-		if (activePlayerProfile == null)
-		{
-			Debug.LogError("Active player profile scriptable is empty!");
-			return;
-		}
-
-		if (playerProfilesManager.CurrenPlayerProfile == null)
-		{
-			Debug.LogError("The player profile was not selected. Please select player profile!");
-			return;
-		}
-
-		activePlayerProfile.PlayerProfile = playerProfilesManager.CurrenPlayerProfile;
-	}
 }

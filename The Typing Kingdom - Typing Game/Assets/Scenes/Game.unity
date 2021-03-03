@@ -1606,7 +1606,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2146215760}
+      - m_Target: {fileID: 2146215765}
         m_MethodName: SaveGameResultsToGameData
         m_Mode: 1
         m_Arguments:
@@ -3380,6 +3380,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 4952766982654699987, guid: 2ff5dc11972df7b4f854d30516117f3a, type: 3}
+  target: {fileID: 0}
+  wordViewMovingSpeed: 0
   wordCanvas: {fileID: 1410366608}
   activeCamera: {fileID: 0}
   offset: -0.5
@@ -3437,3 +3439,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 166bdd4980fccfa4cac2faec5fec0823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerProfilesManager: {fileID: 2146215764}
+  activePlayerProfile: {fileID: 11400000, guid: 7d36a432ca680c54c8d2575ea006d549,
+    type: 2}
+  playerProfileForGameScene: {fileID: 11400000, guid: 280ac73e57bdb1c42b021a601a6f960c,
+    type: 2}
+  timeCounter: {fileID: 2146215762}

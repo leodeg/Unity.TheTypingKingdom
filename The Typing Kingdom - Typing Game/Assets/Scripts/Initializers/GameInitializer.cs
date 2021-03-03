@@ -166,15 +166,4 @@ public class GameInitializer : MonoBehaviour
 		pauseManager.OnPaused.AddListener(() => eventsManager.OnGamePaused?.Invoke());
 		pauseManager.OnResume.AddListener(() => eventsManager.OnGameResume?.Invoke());
 	}
-
-	public void SaveGameResultsToGameData ()
-	{
-		playerProfileForGameScene.PlayerProfile.elapsedTimeInSeconds = Mathf.RoundToInt(timeCounter.TimePassed);
-
-		activePlayerProfile.PlayerProfile.AddStats(playerProfileForGameScene.PlayerProfile);
-
-		playerProfilesManager.UpdateProfile(activePlayerProfile.PlayerProfile.playerName, activePlayerProfile.PlayerProfile);
-
-		gameDataManager.SaveGameData();
-	}
 }

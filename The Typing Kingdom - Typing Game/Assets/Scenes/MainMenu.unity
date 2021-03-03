@@ -3288,6 +3288,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 166bdd4980fccfa4cac2faec5fec0823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerProfilesManager: {fileID: 399340912}
+  activePlayerProfile: {fileID: 11400000, guid: 7d36a432ca680c54c8d2575ea006d549,
+    type: 2}
+  playerProfileForGameScene: {fileID: 11400000, guid: 280ac73e57bdb1c42b021a601a6f960c,
+    type: 2}
+  timeCounter: {fileID: 0}
 --- !u!114 &399340914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9569,7 +9575,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 399340914}
+      - m_Target: {fileID: 399340913}
         m_MethodName: SavePlayerProfileToScriptable
         m_Mode: 1
         m_Arguments:
