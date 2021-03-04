@@ -985,7 +985,7 @@ RectTransform:
   - {fileID: 1406183988}
   - {fileID: 276835860}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1371,7 +1371,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &790509462
 GameObject:
@@ -1542,9 +1542,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnTargetCollisionWithWords:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTargetGetDamage:
     m_PersistentCalls:
       m_Calls: []
   OnTargetDeath:
@@ -2508,7 +2505,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1386657431
 GameObject:
@@ -2733,7 +2730,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3008,6 +3005,36 @@ MonoBehaviour:
   OnTargetDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1632221914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1632221915}
+  m_Layer: 0
+  m_Name: WordsContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1632221915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632221914}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1873405886
 GameObject:
   m_ObjectHideFlags: 0
@@ -3394,8 +3421,8 @@ MonoBehaviour:
   prefab: {fileID: 4952766982654699987, guid: 2ff5dc11972df7b4f854d30516117f3a, type: 3}
   target: {fileID: 0}
   wordViewMovingSpeed: 0
-  wordCanvas: {fileID: 1410366608}
-  activeCamera: {fileID: 0}
+  wordCanvas: {fileID: 1632221915}
+  activeCamera: {fileID: 519420031}
   offset: -0.5
 --- !u!114 &2146215762
 MonoBehaviour:

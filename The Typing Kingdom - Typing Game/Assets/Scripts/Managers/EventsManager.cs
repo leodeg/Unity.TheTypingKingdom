@@ -20,7 +20,6 @@ public class EventsManager : MonoBehaviour
 
 	[Header("Targets Events")]
 	public UnityEvent OnTargetCollisionWithWords;
-	public UnityEvent OnTargetGetDamage;
 	public UnityEvent OnTargetDeath;
 
 	[Header("Game Events")]
