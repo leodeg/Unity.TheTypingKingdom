@@ -31,6 +31,6 @@ public class StatisticsUi : MonoBehaviour
 
 		var text = gameObject.AddComponent<Text>();
 		text.font = font;
-		text.text = activePlayerProfile.PlayerProfile.ToString();
+		text.text = activePlayerProfile.variable.ToString();
 	}
 }

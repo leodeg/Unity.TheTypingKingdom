@@ -7,7 +7,7 @@ public class Target : MonoBehaviour
 
 	public UnityEvent OnTargetDeath;
 
-	public bool IsTargetDead => hitPoints.value <= 0;
+	public bool IsTargetDead => hitPoints.variable <= 0;
 	public int CurrentDamage { get; set; }
 
 	private void Awake()
@@ -25,7 +25,7 @@ public class Target : MonoBehaviour
 	{
 		if (damage > 0)
 		{
-			hitPoints.Set(hitPoints.value - damage);
+			hitPoints.Set(hitPoints.variable - damage);
 			if (IsTargetDead)
 				OnTargetDeath?.Invoke();
 		}

@@ -73,7 +73,7 @@ public class GameInitializer : MonoBehaviour
 			return;
 		}
 
-		playerProfileForGameScene.PlayerProfile = new PlayerProfile();
+		playerProfileForGameScene.Set(new PlayerProfile());
 
 		if (assetsReferences == null)
 		{
@@ -81,7 +81,7 @@ public class GameInitializer : MonoBehaviour
 			return;
 		}
 
-		var textGeneratorFactory = new TextGeneratorFactory(gameSettings.settings, assetsReferences.assetsReferences);
+		var textGeneratorFactory = new TextGeneratorFactory(gameSettings.variable, assetsReferences.variable);
 		currentTextGenerator = textGeneratorFactory.GetTextGenerator();
 
 		if (currentTextGenerator == null)
@@ -126,11 +126,11 @@ public class GameInitializer : MonoBehaviour
 		wordsController.OnTypeLetterFailed += () => eventsManager.OnTypeLetterFailed?.Invoke();
 
 		//Timer
-		timer.SecondsBetweenSpawns = gameSettings.settings.SecondsBetweenSpawns;
+		timer.SecondsBetweenSpawns = gameSettings.variable.SecondsBetweenSpawns;
 
 		// Target
-		target.CurrentDamage = gameSettings.settings.GetDamageByGameDifficulty();
-		target.hitPoints.value = gameSettings.settings.DefaultHitPointsAmount;
+		target.CurrentDamage = gameSettings.variable.GetDamageByGameDifficulty();
+		target.hitPoints.variable = gameSettings.variable.DefaultHitPointsAmount;
 
 		// Input Manager
 		inputManager.WordsController = wordsController;
@@ -138,7 +138,7 @@ public class GameInitializer : MonoBehaviour
 		// WordsViewSpawner
 		var spawner = GetComponent<WordsViewSpawner>();
 		spawner.target = targetTransform;
-		spawner.wordViewMovingSpeed = gameSettings.settings.GetSpeedByGameDifficulty();
+		spawner.wordViewMovingSpeed = gameSettings.variable.GetSpeedByGameDifficulty();
 
 		// Spawn Manager
 		spawnManager.WordViewGenerator = GetComponent<WordsViewSpawner>();

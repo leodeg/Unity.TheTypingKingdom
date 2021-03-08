@@ -54,7 +54,7 @@ public class GameDataManager : MonoBehaviour
 			return;
 		}
 
-		activePlayerProfile.PlayerProfile = playerProfilesManager.CurrenPlayerProfile;
+		activePlayerProfile.Set(playerProfilesManager.CurrenPlayerProfile);
 	}
 
 	public void SaveGameResultsToGameData()
@@ -65,11 +65,11 @@ public class GameDataManager : MonoBehaviour
 			return;
 		}
 
-		playerProfileForGameScene.PlayerProfile.elapsedTimeInSeconds = Mathf.RoundToInt(timeCounter.TimePassed);
+		playerProfileForGameScene.variable.elapsedTimeInSeconds = Mathf.RoundToInt(timeCounter.TimePassed);
 
-		activePlayerProfile.PlayerProfile.AddStats(playerProfileForGameScene.PlayerProfile);
+		activePlayerProfile.variable.AddStats(playerProfileForGameScene.variable);
 
-		playerProfilesManager.UpdateProfile(activePlayerProfile.PlayerProfile.playerName, activePlayerProfile.PlayerProfile);
+		playerProfilesManager.UpdateProfile(activePlayerProfile.variable.playerName, activePlayerProfile.variable);
 
 		SaveGameData();
 	}

@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a80e2075e94294f960c7c64b061f67, type: 3}
   m_Name: AssetsReferences
   m_EditorClassIdentifier: 
-  assetsReferences:
+  variable:
     qwertyKeyboardJsonEn: {fileID: 4900000, guid: 6444732aae7ca694baa1a55699cf833e,
       type: 3}
     qwertyKeyboardJsonRu: {fileID: 4900000, guid: 40d4db033ded8e64c80db9eb48e48246,
       type: 3}
     wordsArrayJsonEn: {fileID: 4900000, guid: 66859f284292b274697d5f82d539c378, type: 3}
     wordsArrayJsonRu: {fileID: 4900000, guid: 3c2c063c6faebd94b852cc669a68a78e, type: 3}
+  OnSetVariable:
+    m_PersistentCalls:
+      m_Calls: []

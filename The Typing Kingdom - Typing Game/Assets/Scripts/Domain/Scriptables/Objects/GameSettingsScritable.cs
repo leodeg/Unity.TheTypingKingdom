@@ -3,48 +3,46 @@ using TMPro;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "GameSettings", menuName = "ScriptableObjects/GameSettings")]
-public class GameSettingsScritable : ScriptableObject
+[CreateAssetMenu(menuName = "ScriptableObjects/GameSettings")]
+public class GameSettingsScritable : ScriptableVariable<GameSettings>
 {
-	public GameSettings settings;
-
 	public void SetHandTrainingMode()
 	{
-		settings.GameType = GameType.HandsTraining;
+		variable.GameType = GameType.HandsTraining;
 	}
 
 	public void SetWordsSandboxMode()
 	{
-		settings.GameType = GameType.WordsSandbox;
+		variable.GameType = GameType.WordsSandbox;
 	}
 
 	public void AssignMinLength(TMP_InputField inputField)
 	{
-		settings.MinWordLength = Convert.ToInt32(inputField.text);
+		variable.MinWordLength = Convert.ToInt32(inputField.text);
 	}
 
 	public void AssignMaxLength(TMP_InputField inputField)
 	{
-		settings.MaxWordLength = Convert.ToInt32(inputField.text);
+		variable.MaxWordLength = Convert.ToInt32(inputField.text);
 	}
 
 	public void AssignHandTypes(QWERTYHandType handType)
 	{
-		settings.HandType = handType;
+		variable.HandType = handType;
 	}
 
 	public void AssignSectionType(QWERTYSectionType sectionType)
 	{
-		settings.SectionTypes = sectionType;
+		variable.SectionTypes = sectionType;
 	}
 
 	public void AssignGameDifficulty(GameDifficulty gameDifficulty)
 	{
-		settings.GameDifficulty = gameDifficulty;
+		variable.GameDifficulty = gameDifficulty;
 	}
 
 	public void AssignGameLanguage(GameLanguage gameLanguage)
 	{
-		settings.GameLanguage = gameLanguage;
+		variable.GameLanguage = gameLanguage;
 	}
 }

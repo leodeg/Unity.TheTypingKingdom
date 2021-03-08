@@ -15,11 +15,11 @@ public class MainMenuUIInitializer : MonoBehaviour
 
 	private void Start()
 	{
-		dropdownGameDifficulty.SetDefaultIndex(gameSettingsScritable.settings.GameDifficulty.ToString());
-		dropdownGameLanguage.SetDefaultIndex(gameSettingsScritable.settings.GameLanguage.ToString());
-		dropdownQWERTYHandType.SetDefaultIndex(gameSettingsScritable.settings.HandType.ToString());
-		dropdownQWERTYSectionType.SetDefaultIndex(gameSettingsScritable.settings.SectionTypes.ToString());
-		minWordsLength.text = gameSettingsScritable.settings.MinWordLength.ToString();
-		maxWordsLength.text = gameSettingsScritable.settings.MaxWordLength.ToString();
+		dropdownGameDifficulty.SetDefaultIndex(gameSettingsScritable.variable.GameDifficulty.ToString());
+		dropdownGameLanguage.SetDefaultIndex(gameSettingsScritable.variable.GameLanguage.ToString());
+		dropdownQWERTYHandType.SetDefaultIndex(gameSettingsScritable.variable.HandType.ToString());
+		dropdownQWERTYSectionType.SetDefaultIndex(gameSettingsScritable.variable.SectionTypes.ToString());
+		minWordsLength.text = gameSettingsScritable.variable.MinWordLength.ToString();
+		maxWordsLength.text = gameSettingsScritable.variable.MaxWordLength.ToString();
 	}
 }
