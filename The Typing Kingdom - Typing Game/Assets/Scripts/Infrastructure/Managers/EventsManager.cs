@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class UnityEventTransform : UnityEvent<Transform> { }
 
-public class EventsManager : MonoBehaviour
+public class EventsManager : SingletonMonoBehaviour<EventsManager>
 {
 	[Header("Words Events with returning transform")]
 	// Events for VFX effects

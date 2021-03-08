@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class Singleton<T> where T : new()
+public class SingletonMonoBehaviour<T> : MonoBehaviour where T : Object
 {
 	private static T instance;
 
@@ -10,7 +10,7 @@ public class Singleton<T> where T : new()
 
 	public static T Instance
 	{
-		set
+		protected set
 		{
 			lock (locker)
 			{
@@ -22,7 +22,15 @@ public class Singleton<T> where T : new()
 			lock (locker)
 			{
 				if (instance == null)
-					instance = System.Activator.CreateInstance<T>();
+				{
+					instance = FindObjectOfType<T>();
+
+					if (instance == null)
+					{
+						instance = new GameObject($"Spawned_{typeof(T).Name}", typeof(T)).GetComponent<T>();
+					}
+				}
+
 				return instance;
 			}
 		}
