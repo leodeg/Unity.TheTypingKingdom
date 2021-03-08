@@ -130,6 +130,7 @@ public class GameInitializer : MonoBehaviour
 
 		// Target
 		target.CurrentDamage = gameSettings.settings.GetDamageByGameDifficulty();
+		target.hitPoints.value = gameSettings.settings.DefaultHitPointsAmount;
 
 		// Input Manager
 		inputManager.WordsController = wordsController;

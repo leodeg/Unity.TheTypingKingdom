@@ -3,15 +3,18 @@ using UnityEngine.Events;
 
 public class Target : MonoBehaviour
 {
-	[SerializeField]
-	private int hitPoints = 100;
+	public ScriptableInteger hitPoints;
 
 	public UnityEvent OnTargetDeath;
 
-	public int HitPoints { get => hitPoints; set => hitPoints = value; }
-	public bool IsTargetDead => hitPoints <= 0;
-
+	public bool IsTargetDead => hitPoints.value <= 0;
 	public int CurrentDamage { get; set; }
+
+	private void Awake()
+	{
+		if (hitPoints == null)
+			Debug.LogError("Hit points scriptable variable not assigned!");
+	}
 
 	public void AddDamage()
 	{
@@ -22,7 +25,7 @@ public class Target : MonoBehaviour
 	{
 		if (damage > 0)
 		{
-			hitPoints -= damage;
+			hitPoints.Set(hitPoints.value - damage);
 			if (IsTargetDead)
 				OnTargetDeath?.Invoke();
 		}

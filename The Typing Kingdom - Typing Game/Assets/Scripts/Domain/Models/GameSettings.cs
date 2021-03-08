@@ -27,6 +27,9 @@ public class GameSettings
 	[Header("Difficulty Enemy Spawns Properties")]
 	[SerializeField] private int secondsBetweenSpawns = 2;
 
+	[Header("Target Properties")]
+	[SerializeField] private int defaultHitPointsAmount = 100;
+
 	[Header("Spawn Words Properties")]
 	[SerializeField] private int minWordLength = 4;
 	[SerializeField] private int maxWordLength = 8;
@@ -75,4 +78,5 @@ public class GameSettings
 
 	public int MinWordLength { get => minWordLength; set => minWordLength = value; }
 	public int MaxWordLength { get => maxWordLength; set => maxWordLength = value; }
+	public int DefaultHitPointsAmount { get => defaultHitPointsAmount; set => defaultHitPointsAmount = value; }
 }
