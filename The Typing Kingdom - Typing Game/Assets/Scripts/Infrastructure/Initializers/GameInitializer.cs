@@ -15,6 +15,9 @@ public class GameInitializer : MonoBehaviour
 	[SerializeField]
 	private Target target;
 
+	[SerializeField]
+	private ProgressBar targetHealthBar;
+
 	[Header("Managers")]
 
 	[SerializeField]
@@ -132,6 +135,11 @@ public class GameInitializer : MonoBehaviour
 		target.CurrentDamage = gameSettings.variable.GetDamageByGameDifficulty();
 		target.hitPoints.variable = gameSettings.variable.DefaultHitPointsAmount;
 
+		// Target Health bar
+		targetHealthBar.min = 0;
+		targetHealthBar.max = target.hitPoints.variable;
+		targetHealthBar.current = target.hitPoints.variable;
+
 		// Input Manager
 		inputManager.WordsController = wordsController;
 
@@ -159,6 +167,7 @@ public class GameInitializer : MonoBehaviour
 	private void AssignTargetEventsToManager()
 	{
 		target.OnTargetDeath.AddListener(() => eventsManager.OnGameEnd?.Invoke());
+		target.hitPoints.OnSetVariableReturnVariable += targetHealthBar.UpdateProgressBar;
 		eventsManager.OnTargetCollisionWithWords.AddListener(target.AddDamage);
 	}
 

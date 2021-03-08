@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743fd06f8e86ca840b59418c1559e975, type: 3}
   m_Name: TargetHealth
   m_EditorClassIdentifier: 
-  value: 0
-  OnSetValue:
+  variable: 100
+  OnSetVariable:
     m_PersistentCalls:
       m_Calls: []

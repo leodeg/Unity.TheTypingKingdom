@@ -1,7 +1,4 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableVariables/Float")]
 public class ScriptableFloat : ScriptableVariable<float> { }

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 public class CameraShaker : MonoBehaviour
 {
@@ -30,7 +29,7 @@ public class CameraShaker : MonoBehaviour
 		ShakeCamera();
 	}
 
-	public void Shake ()
+	public void Shake()
 	{
 		time = duration;
 		ResetCamera();
@@ -52,7 +51,7 @@ public class CameraShaker : MonoBehaviour
 			float verticalPerlinNoise = Mathf.PerlinNoise(time * speed * 2, time * speed) - 0.5f;
 			float forwardPerlinNoise = Mathf.PerlinNoise(time * speed * 2, time * speed * 2) - 0.5f;
 
-			nextPosition = horizontalPerlinNoise * amount.x * transform.right * curve.Evaluate(1f - time / duration) + 
+			nextPosition = horizontalPerlinNoise * amount.x * transform.right * curve.Evaluate(1f - time / duration) +
 				verticalPerlinNoise * amount.y * transform.up * curve.Evaluate(1f - time / duration);
 			nextFieldOfView = forwardPerlinNoise * amount.z * curve.Evaluate(1f - time / duration);
 

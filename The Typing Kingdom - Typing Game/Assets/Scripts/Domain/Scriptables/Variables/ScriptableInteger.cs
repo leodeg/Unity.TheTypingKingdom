@@ -1,7 +1,4 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableVariables/Integer")]
 public class ScriptableInteger : ScriptableVariable<int> { }
