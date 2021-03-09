@@ -67,6 +67,12 @@ public class GameInitializer : MonoBehaviour
 
 	private void Awake()
 	{
+		if (audioManager == null)
+		{
+			Debug.LogError("Audio manager is empty");
+			return;
+		}
+
 		if (activePlayerProfile == null)
 		{
 			Debug.LogError("Active player profile is empty");
@@ -106,6 +112,7 @@ public class GameInitializer : MonoBehaviour
 		AssignPauseEventsFromManager();
 		AssignAudioEvents();
 
+		pauseManager.ResumeGame();
 		timer.OnTick.AddListener(spawnManager.Spawn);
 	}
 

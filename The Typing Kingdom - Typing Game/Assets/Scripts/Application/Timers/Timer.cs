@@ -17,6 +17,8 @@ public class Timer : MonoBehaviour
 		{
 			elapsedTime = 0;
 			OnTick?.Invoke();
+
+			Debug.Log($"TICK --- number of events {OnTick.GetPersistentEventCount()}");
 		}
 	}
 }
