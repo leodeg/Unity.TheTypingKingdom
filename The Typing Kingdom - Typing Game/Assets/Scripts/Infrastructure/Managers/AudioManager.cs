@@ -8,8 +8,6 @@ public class AudioManager : MonoBehaviour
 	public AudioPlayer audioPlayer;
 	public AudioReferencesScritable audioReferences;
 
-	public static AudioManager Instance { get; private set; }
-
 	private int currentMusicIndex;
 
 	private void Awake()
@@ -24,11 +22,6 @@ public class AudioManager : MonoBehaviour
 		{
 			audioPlayer = GetComponent<AudioPlayer>();
 		}
-
-		if (Instance == null || Instance != this.gameObject)
-			Instance = this.gameObject.GetComponent<AudioManager>();
-
-		DontDestroyOnLoad(gameObject);
 	}
 
 	private void Start()
@@ -46,19 +39,6 @@ public class AudioManager : MonoBehaviour
 				PlayRandomMusic();
 			else PlayNextMusic();
 		}
-	}
-
-	public void AssignAudioEffectsToEventsManager(EventsManager eventsManager)
-	{
-		eventsManager.OnTypeLetterSuccess.AddListener(() => audioPlayer.PlaySFX(audioReferences.variable.typeSuccess));
-		eventsManager.OnTypeLetterFailed.AddListener(() => audioPlayer.PlaySFX(audioReferences.variable.typeFailed));
-		eventsManager.OnCompleteWord.AddListener(() => audioPlayer.PlaySFX(audioReferences.variable.completeWord));
-
-		eventsManager.OnTargetCollisionWithWords.AddListener(() => audioPlayer.PlaySFX(audioReferences.variable.collisionWithTarget));
-		eventsManager.OnTargetDeath.AddListener(() => audioPlayer.PlaySFX(audioReferences.variable.targetDeath));
-
-		eventsManager.OnGameEnd.AddListener(() => audioPlayer.PlaySFX(audioReferences.variable.gameEnd));
-		eventsManager.OnGamePaused.AddListener(() => audioPlayer.PlaySFX(audioReferences.variable.openGameMenu));
 	}
 
 	private void PlayRandomMusic()

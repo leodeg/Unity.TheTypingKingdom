@@ -33,6 +33,9 @@ public class GameInitializer : MonoBehaviour
 	private PauseManager pauseManager;
 
 	[SerializeField]
+	private AudioManager audioManager;
+
+	[SerializeField]
 	private GameDataManager gameDataManager;
 
 	[SerializeField]
@@ -130,7 +133,7 @@ public class GameInitializer : MonoBehaviour
 		wordsController.OnTypeLetterFailed += () => eventsManager.OnTypeLetterFailed?.Invoke();
 
 		//Timer
-		timer.SecondsBetweenSpawns = gameSettings.variable.SecondsBetweenSpawns;
+		timer.SecondsBetweenTicks = gameSettings.variable.SecondsBetweenSpawns;
 
 		// Target
 		target.CurrentDamage = gameSettings.variable.GetDamageByGameDifficulty();
@@ -180,6 +183,19 @@ public class GameInitializer : MonoBehaviour
 
 	private void AssignAudioEvents()
 	{
-		AudioManager.Instance.AssignAudioEffectsToEventsManager(eventsManager);
+		AssignAudioEffectsToEventsManager(audioManager.audioPlayer, audioManager.audioReferences, eventsManager);
+	}
+
+	private void AssignAudioEffectsToEventsManager(AudioPlayer audioPlayer, AudioReferencesScritable audioReferences, EventsManager eventsManager)
+	{
+		eventsManager.OnTypeLetterSuccess.AddListener(() => audioPlayer.PlaySFX(audioReferences.variable.typeSuccess));
+		eventsManager.OnTypeLetterFailed.AddListener(() => audioPlayer.PlaySFX(audioReferences.variable.typeFailed));
+		eventsManager.OnCompleteWord.AddListener(() => audioPlayer.PlaySFX(audioReferences.variable.completeWord));
+
+		eventsManager.OnTargetCollisionWithWords.AddListener(() => audioPlayer.PlaySFX(audioReferences.variable.collisionWithTarget));
+		eventsManager.OnTargetDeath.AddListener(() => audioPlayer.PlaySFX(audioReferences.variable.targetDeath));
+
+		eventsManager.OnGameEnd.AddListener(() => audioPlayer.PlaySFX(audioReferences.variable.gameEnd));
+		eventsManager.OnGamePaused.AddListener(() => audioPlayer.PlaySFX(audioReferences.variable.openGameMenu));
 	}
 }

@@ -3,17 +3,17 @@ using UnityEngine.Events;
 
 public class Timer : MonoBehaviour
 {
+	public float secondsBetweenTicks = 2;
 	public UnityEvent OnTick;
 
-	private float secondsBetweenSpawns = 2;
 	private float elapsedTime = 0.0f;
 
-	public float SecondsBetweenSpawns { get => secondsBetweenSpawns; set => secondsBetweenSpawns = value; }
+	public float SecondsBetweenTicks { get => secondsBetweenTicks; set => secondsBetweenTicks = value; }
 
 	void Update()
 	{
 		elapsedTime += Time.deltaTime;
-		if (elapsedTime > secondsBetweenSpawns)
+		if (elapsedTime > secondsBetweenTicks)
 		{
 			elapsedTime = 0;
 			OnTick?.Invoke();
