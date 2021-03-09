@@ -101,6 +101,7 @@ public class GameInitializer : MonoBehaviour
 		AssignPlayerProfileEventsToManager();
 		AssignTargetEventsToManager();
 		AssignPauseEventsFromManager();
+		AssignAudioEvents();
 
 		timer.OnTick.AddListener(spawnManager.Spawn);
 	}
@@ -175,5 +176,10 @@ public class GameInitializer : MonoBehaviour
 	{
 		pauseManager.OnPaused.AddListener(() => eventsManager.OnGamePaused?.Invoke());
 		pauseManager.OnResume.AddListener(() => eventsManager.OnGameResume?.Invoke());
+	}
+
+	private void AssignAudioEvents()
+	{
+		AudioManager.Instance.AssignAudioEffectsToEventsManager(eventsManager);
 	}
 }

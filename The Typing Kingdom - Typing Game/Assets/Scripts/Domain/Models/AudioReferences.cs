@@ -14,7 +14,7 @@ public class AudioReferences
 	public AudioClip targetDeath;
 	public AudioClip collisionWithTarget;
 
-	[Header("Game Menu")]
+	[Header("Menus")]
 	public AudioClip openGameMenu;
 	public AudioClip gameEnd;
 

@@ -13,14 +13,20 @@ MonoBehaviour:
   m_Name: AudioReferences
   m_EditorClassIdentifier: 
   variable:
-    typeSuccess: {fileID: 0}
-    typeFailed: {fileID: 0}
-    completeWord: {fileID: 0}
-    targetDeath: {fileID: 0}
-    collisionWithTarget: {fileID: 0}
-    openGameMenu: {fileID: 0}
-    gameEnd: {fileID: 0}
-    backgroundMusic: []
+    typeSuccess: {fileID: 8300000, guid: b99413500bcdb084288a5c217892872d, type: 3}
+    typeFailed: {fileID: 8300000, guid: 38e9a2da70124184fbb994d654f826cc, type: 3}
+    completeWord: {fileID: 8300000, guid: 3bd17eb93c660e24ab7bac4b1ed24aa5, type: 3}
+    targetDeath: {fileID: 8300000, guid: 2c5043bc7aeb4364f92823685e381c19, type: 3}
+    collisionWithTarget: {fileID: 8300000, guid: 598d8fdef941e7049a4257ea36db1f83,
+      type: 3}
+    openGameMenu: {fileID: 8300000, guid: 37208fa0bd434e24ab0b338dec62ed7b, type: 3}
+    gameEnd: {fileID: 8300000, guid: d813218169c90aa4dad696591e04e70a, type: 3}
+    backgroundMusic:
+    - {fileID: 8300000, guid: 59949b0229179264ca6145ee4064694d, type: 3}
+    - {fileID: 8300000, guid: 4710f99185f8eee47a4d0c1544ce5b16, type: 3}
+    - {fileID: 8300000, guid: e9ab94906224e19458d70afa0273be7b, type: 3}
+    - {fileID: 8300000, guid: 86088d6c735fd9b46a104af87ae278b8, type: 3}
+    - {fileID: 8300000, guid: f0245ba112ee8b942b4f60a412fccfe6, type: 3}
   OnSetVariable:
     m_PersistentCalls:
       m_Calls: []

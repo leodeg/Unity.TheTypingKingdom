@@ -2,37 +2,38 @@
 using UnityEngine;
 
 [System.Serializable]
-public class SingletonMonoBehaviour<T> : MonoBehaviour where T : Object
+public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
 {
 	private static T instance;
-
-	private static object locker = new object();
+	private static readonly object instanceLock = new object();
+	private static bool quitting = false;
 
 	public static T Instance
 	{
-		protected set
-		{
-			lock (locker)
-			{
-				instance = value;
-			}
-		}
 		get
 		{
-			lock (locker)
+			lock (instanceLock)
 			{
-				if (instance == null)
+				if (instance == null && !quitting)
 				{
-					instance = FindObjectOfType<T>();
 
+					instance = FindObjectOfType<T>();
 					if (instance == null)
 					{
-						instance = new GameObject($"Spawned_{typeof(T).Name}", typeof(T)).GetComponent<T>();
+						GameObject go = new GameObject($"Spawned__{typeof(T).ToString()}");
+						instance = go.AddComponent<T>();
+
+						DontDestroyOnLoad(instance.gameObject);
 					}
 				}
 
 				return instance;
 			}
 		}
+	}
+
+	protected virtual void OnApplicationQuit()
+	{
+		quitting = true;
 	}
 }
