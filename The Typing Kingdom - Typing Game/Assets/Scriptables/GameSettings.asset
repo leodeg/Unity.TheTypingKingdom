@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c70516a8f37934482f044410d22559, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  settings:
+  variable:
     gameLanguage: 0
-    gameDifficulty: 0
+    gameDifficulty: 3
+    musicVolume: 0.8
+    sfxVolume: 0.6
     gameType: 0
     handType: 0
-    sectionTypes: 1
+    sectionTypes: 3
     easyGameSpeed: 0.3
     mediumGameSpeed: 0.5
     hardGameSpeed: 0.8
@@ -26,6 +28,10 @@ MonoBehaviour:
     mediumGameDamage: 20
     hardGameDamage: 30
     godGameDamage: 40
-    secondsBetweenSpawns: 1
-    minWordLength: 2
+    secondsBetweenSpawns: 2
+    defaultHitPointsAmount: 100
+    minWordLength: 4
     maxWordLength: 8
+  OnSetVariable:
+    m_PersistentCalls:
+      m_Calls: []

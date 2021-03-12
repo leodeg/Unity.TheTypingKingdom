@@ -12,6 +12,11 @@ public class WordView : MonoBehaviour
 	[SerializeField]
 	private float collisionDistance = 0.1f;
 
+	[Header("Effects")]
+	public ParticleSystem typeSuccess;
+	public ParticleSystem typeFailed;
+	public ParticleSystem completeWord;
+
 	private float speed = 1f;
 	private bool isDamageAssign = false;
 

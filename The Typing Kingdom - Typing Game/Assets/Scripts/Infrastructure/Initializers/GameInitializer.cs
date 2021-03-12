@@ -42,6 +42,9 @@ public class GameInitializer : MonoBehaviour
 	private PlayerProfilesManager playerProfilesManager;
 
 	[SerializeField]
+	private ParticleEffectsManager particleEffectsManager;
+
+	[SerializeField]
 	private Timer timer;
 
 	[SerializeField]
@@ -70,6 +73,12 @@ public class GameInitializer : MonoBehaviour
 		if (audioManager == null)
 		{
 			Debug.LogError("Audio manager is empty");
+			return;
+		}
+
+		if (particleEffectsManager == null)
+		{
+			Debug.LogError("Particle effects manager is empty");
 			return;
 		}
 
@@ -111,6 +120,7 @@ public class GameInitializer : MonoBehaviour
 		AssignTargetEventsToManager();
 		AssignPauseEventsFromManager();
 		AssignAudioEvents();
+		AssignVFXEventsToEventsManager();
 
 		pauseManager.ResumeGame();
 		timer.OnTick.AddListener(spawnManager.Spawn);
@@ -153,6 +163,10 @@ public class GameInitializer : MonoBehaviour
 
 		// Input Manager
 		inputManager.WordsController = wordsController;
+
+		// Audio Manager
+		audioManager.audioPlayer.SetMusicVolume(gameSettings.variable.MusicVolume);
+		audioManager.audioPlayer.SetSFXVolume(gameSettings.variable.SfxVolume);
 
 		// WordsViewSpawner
 		var spawner = GetComponent<WordsViewSpawner>();
@@ -204,5 +218,15 @@ public class GameInitializer : MonoBehaviour
 
 		eventsManager.OnGameEnd.AddListener(() => audioPlayer.PlaySFX(audioReferences.variable.gameEnd));
 		eventsManager.OnGamePaused.AddListener(() => audioPlayer.PlaySFX(audioReferences.variable.openGameMenu));
+	}
+
+	private void AssignVFXEventsToEventsManager()
+	{
+		eventsManager.OnCompleteWordReturnTransform.AddListener(particleEffectsManager.PlayCompleteWord);
+		eventsManager.OnTypeLetterSuccessReturnTransform.AddListener(particleEffectsManager.PlayTypeSuccess);
+		eventsManager.OnTypeLetterFailedReturnTransform.AddListener(particleEffectsManager.PlayTypeFailed);
+
+		eventsManager.OnTargetCollisionWithWords.AddListener(() => particleEffectsManager.PlayCollisionWithTarget(targetTransform));
+		eventsManager.OnTargetDeath.AddListener(() => particleEffectsManager.PlayTargetDeath(targetTransform));
 	}
 }

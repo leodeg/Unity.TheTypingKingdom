@@ -5,7 +5,12 @@ public class Target : MonoBehaviour
 {
 	public ScriptableInteger hitPoints;
 
+	[Header("Effects")]
+	public ParticleSystem targetDeath;
+	public ParticleSystem collisionWithTarget;
+
 	public UnityEvent OnTargetDeath;
+
 
 	public bool IsTargetDead => hitPoints.variable <= 0;
 	public int CurrentDamage { get; set; }

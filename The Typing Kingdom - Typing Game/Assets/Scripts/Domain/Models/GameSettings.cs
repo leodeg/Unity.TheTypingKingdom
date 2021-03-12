@@ -6,6 +6,8 @@ public class GameSettings
 	[Header("Game Properties")]
 	[SerializeField] private GameLanguage gameLanguage;
 	[SerializeField] private GameDifficulty gameDifficulty;
+	[SerializeField] [Range(0.0f, 1.0f)] private float musicVolume = 1.0f;
+	[SerializeField] [Range(0.0f, 1.0f)] private float sfxVolume = 1.0f;
 
 	[Header("Spawn Properties")]
 	[SerializeField] private GameType gameType;
@@ -79,4 +81,6 @@ public class GameSettings
 	public int MinWordLength { get => minWordLength; set => minWordLength = value; }
 	public int MaxWordLength { get => maxWordLength; set => maxWordLength = value; }
 	public int DefaultHitPointsAmount { get => defaultHitPointsAmount; set => defaultHitPointsAmount = value; }
+	public float MusicVolume { get => musicVolume; set => musicVolume = value; }
+	public float SfxVolume { get => sfxVolume; set => sfxVolume = value; }
 }

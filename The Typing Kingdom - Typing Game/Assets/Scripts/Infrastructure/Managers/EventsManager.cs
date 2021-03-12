@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
 public class UnityEventTransform : UnityEvent<Transform> { }
 
 public class EventsManager : MonoBehaviour
 {
 	[Header("Words Events with returning transform")]
 	// Events for VFX effects
-	public UnityEventTransform OnTypeLetterSuccessReturnTransform;
-	public UnityEventTransform OnTypeLetterFailedReturnTransform;
-	public UnityEventTransform OnCompleteWordReturnTransform;
+	public UnityEventTransform OnTypeLetterSuccessReturnTransform = new UnityEventTransform();
+	public UnityEventTransform OnTypeLetterFailedReturnTransform = new UnityEventTransform();
+	public UnityEventTransform OnCompleteWordReturnTransform = new UnityEventTransform();
 
 	[Header("Words Events")]
 	public UnityEvent OnTypeLetterSuccess;
