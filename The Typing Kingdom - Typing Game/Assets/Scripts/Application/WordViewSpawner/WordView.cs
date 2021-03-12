@@ -4,18 +4,11 @@ using UnityEngine.UI;
 
 public class WordView : MonoBehaviour
 {
-	public UnityEvent OnCollisionWithTarget;
-
 	public Text word;
 	public Transform target;
+	[SerializeField] private float collisionDistance = 0.1f;
 
-	[SerializeField]
-	private float collisionDistance = 0.1f;
-
-	[Header("Effects")]
-	public ParticleSystem typeSuccess;
-	public ParticleSystem typeFailed;
-	public ParticleSystem completeWord;
+	public UnityEvent OnCollisionWithTarget;
 
 	private float speed = 1f;
 	private bool isDamageAssign = false;
