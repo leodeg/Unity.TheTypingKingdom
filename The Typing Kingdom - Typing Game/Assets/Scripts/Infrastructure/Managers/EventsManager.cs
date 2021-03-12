@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-[System.Serializable]
-public class UnityEventTransform : UnityEvent<Transform> { }
-
 public class EventsManager : MonoBehaviour
 {
 	[Header("Words Events with returning transform")]

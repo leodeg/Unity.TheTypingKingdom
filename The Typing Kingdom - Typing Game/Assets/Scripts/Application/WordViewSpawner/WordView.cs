@@ -13,6 +13,8 @@ public class WordView : MonoBehaviour
 	private float speed = 1f;
 	private bool isDamageAssign = false;
 
+	public float CollisionDistance { get => collisionDistance; set => collisionDistance = value; }
+
 	private void Start()
 	{
 		if (target == null)
@@ -32,7 +34,7 @@ public class WordView : MonoBehaviour
 		float step = speed * Time.deltaTime;
 		transform.position = Vector2.MoveTowards(transform.position, target.position, step);
 
-		if (Vector2.Distance(transform.position, target.position) < collisionDistance)
+		if (Vector2.Distance(transform.position, target.position) < CollisionDistance)
 		{
 			if (!isDamageAssign)
 			{

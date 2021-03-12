@@ -3029,7 +3029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &1597663668
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3051,8 +3051,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: {fileID: 11400000, guid: 274a1f7c9876ec74f99acd89b75b4c71, type: 2}
-  targetDeath: {fileID: 0}
-  collisionWithTarget: {fileID: 0}
   OnTargetDeath:
     m_PersistentCalls:
       m_Calls: []
