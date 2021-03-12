@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 
-public class Vector3PositionGeneratorOutsideCameraView : IRandomPositionGenerator
+public class Vector3RandomPositionOutsideCameraView : IRandomVector3
 {
 	public Camera Camera { get; set; }
 
 	[SerializeField]
 	private float Offset { get; set; }
 
-	public Vector3PositionGeneratorOutsideCameraView(Camera camera, float offset = 0.1f)
+	public Vector3RandomPositionOutsideCameraView(Camera camera, float offset = 0.1f)
 	{
 		Camera = camera;
 		Offset = offset;
 	}
 
-	public Vector3 GeneratePosition()
+	public Vector3 GetRandomVector3Position()
 	{
 		Vector2 position = new Vector2();
 		float verticalOrHorizontal = Random.Range(0f, 1f);

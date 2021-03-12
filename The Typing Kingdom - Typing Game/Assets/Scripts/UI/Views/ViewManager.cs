@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -16,14 +17,30 @@ public class ViewManager : MonoBehaviour
 
 	private readonly Stack<View> history = new Stack<View>();
 
-	private void Awake() => instance = this;
+	private void Awake()
+	{
+		instance = this;
+
+		if (!views.Any())
+		{
+			views = FindObjectsOfType<View>();
+
+			if (views.Any() && startingView == null)
+			{
+				startingView = views[0];
+			}
+			else
+			{
+				Debug.LogWarning("View manager's list of views is empty!");
+			}
+		}
+	}
 
 	private void Start()
 	{
 		for (int i = 0; i < views.Length; i++)
 		{
 			views[i].Initialize();
-
 			views[i].Hide();
 		}
 
@@ -35,48 +52,21 @@ public class ViewManager : MonoBehaviour
 
 	public static T GetView<T>() where T : View
 	{
-		for (int i = 0; i < instance.views.Length; i++)
-		{
-			if (instance.views[i] is T tView)
-			{
-				return tView;
-			}
-		}
-
-		return null;
+		return instance.views.FirstOrDefault(view => view is T) as T;
 	}
 
 	public static void Hide<T>() where T : View
 	{
-		for (int i = 0; i < instance.views.Length; i++)
-		{
-			if (instance.views[i] is T)
-			{
-				instance.views[i].Hide();
-			}
-		}
+		instance.views.FirstOrDefault(view => view is T)?.Hide();
 	}
 
 	public static void Show<T>(bool remember = true) where T : View
 	{
-		for (int i = 0; i < instance.views.Length; i++)
+		var view = GetView<T>();
+
+		if (view != null)
 		{
-			if (instance.views[i] is T)
-			{
-				if (instance.currentView != null)
-				{
-					if (remember)
-					{
-						instance.history.Push(instance.currentView);
-					}
-
-					instance.currentView.Hide();
-				}
-
-				instance.views[i].Show();
-
-				instance.currentView = instance.views[i];
-			}
+			Show(view, remember);
 		}
 	}
 

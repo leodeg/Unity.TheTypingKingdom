@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: ParticleEffectsReferences
   m_EditorClassIdentifier: 
   variable:
-    typeSuccess: {fileID: 19886120, guid: 5702e2a6fea804b45b49b70d8feaf7ae, type: 3}
-    typeFailed: {fileID: 19811986, guid: 6636b3078b0905e489f698a11b7a6b6b, type: 3}
-    completeWord: {fileID: 19814690, guid: cd4d7020429cde74db076ffa72495419, type: 3}
+    typeSuccess: {fileID: 1361015140069094175, guid: ca36333113a13444db743d62f9ba99af,
+      type: 3}
+    typeFailed: {fileID: 6096114289163283346, guid: 515c22040b551e649a7318776d2dd5b3,
+      type: 3}
+    completeWord: {fileID: 4756778478439027489, guid: 036c5663fca8f22458d6a87f6cce0636,
+      type: 3}
     targetDeath: {fileID: 19861012, guid: 0f75f6db4a318f54382e0c98b2226db8, type: 3}
     collisionWithTarget: {fileID: 19860484, guid: 6586ff0f14125534cae2f5d8f04b7871,
       type: 3}

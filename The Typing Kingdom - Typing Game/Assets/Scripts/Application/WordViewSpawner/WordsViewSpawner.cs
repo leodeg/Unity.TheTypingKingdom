@@ -18,7 +18,7 @@ public class WordsViewSpawner : MonoBehaviour, IWordsViewSpawner
 	[SerializeField]
 	private float offset = 0.1f;
 
-	public IRandomPositionGenerator PositionGenerator { get; set; }
+	public IRandomVector3 PositionGenerator { get; set; }
 
 	private void Start()
 	{
@@ -31,12 +31,12 @@ public class WordsViewSpawner : MonoBehaviour, IWordsViewSpawner
 		if (activeCamera == null)
 			activeCamera = Camera.main;
 
-		PositionGenerator = new Vector3PositionGeneratorOutsideCameraView(activeCamera, offset);
+		PositionGenerator = new Vector3RandomPositionOutsideCameraView(activeCamera, offset);
 	}
 
 	public WordView InstantiateWordView()
 	{
-		Vector3 randomPosition = PositionGenerator.GeneratePosition();
+		Vector3 randomPosition = PositionGenerator.GetRandomVector3Position();
 		GameObject wordObject = Instantiate(prefab, randomPosition, Quaternion.identity, wordCanvas);
 
 		var wordView = wordObject.GetComponent<WordView>();

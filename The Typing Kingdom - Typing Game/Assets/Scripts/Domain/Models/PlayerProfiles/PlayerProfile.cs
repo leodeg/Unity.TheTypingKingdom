@@ -33,13 +33,12 @@ public class PlayerProfile
 
 	public int GetWordsPerMinute()
 	{
-		// Number_of_keystroke / time_in_minute * percentages_of_accurate_word
-		// Number_of_keystroke / time_in_second * 60 * percentages_of_accurate_word
-
 		var totalCountOfWrittenWords = GetTotalCountOfWrittenWords();
 		var totalCountOfInputAttempts = GetTotalCountOfInputAttempts();
 
-		if (totalCountOfWrittenWords < 1 || totalCountOfInputAttempts < 1 || elapsedTimeInSeconds < 1)
+		if (totalCountOfWrittenWords < 1
+			|| totalCountOfInputAttempts < 1
+			|| elapsedTimeInSeconds < 1)
 			return 0;
 
 		var percentagesOfAccurateWords = (successfulWrittenWords / totalCountOfWrittenWords) * 100;
