@@ -4828,7 +4828,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6096114289093388736
 Transform:
   m_ObjectHideFlags: 0
@@ -9634,7 +9634,7 @@ GameObject:
   - component: {fileID: 6096114289163283346}
   - component: {fileID: 6096114289163283349}
   m_Layer: 0
-  m_Name: Hit_3
+  m_Name: Particles@Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9847,8 +9847,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.972549, g: 0.67141324, b: 0.34509805, a: 1}
-      maxColor: {r: 0.8980392, g: 0.7121837, b: 0.36862743, a: 1}
+      minColor: {r: 0.54260874, g: 0.34509805, b: 0.972549, a: 1}
+      maxColor: {r: 0.3039783, g: 0.4750824, b: 0.9339623, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14454,7 +14454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6096114289596319235
 Transform:
   m_ObjectHideFlags: 0

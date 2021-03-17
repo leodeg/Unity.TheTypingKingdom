@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: ParticleEffectsReferences
   m_EditorClassIdentifier: 
   variable:
-    typeSuccess: {fileID: 1361015140069094175, guid: ca36333113a13444db743d62f9ba99af,
+    typeSuccess: {fileID: 6096114289163283346, guid: a7f4300bb8ab9b04faac8152b02b0d70,
       type: 3}
-    typeFailed: {fileID: 6096114289163283346, guid: 515c22040b551e649a7318776d2dd5b3,
+    typeFailed: {fileID: 6096114289163283346, guid: f14fd879d64a0604d9e521673d19b11b,
       type: 3}
-    completeWord: {fileID: 4756778478439027489, guid: 036c5663fca8f22458d6a87f6cce0636,
+    completeWord: {fileID: 1361015140069094175, guid: ca36333113a13444db743d62f9ba99af,
       type: 3}
-    targetDeath: {fileID: 6096114289163283346, guid: 515c22040b551e649a7318776d2dd5b3,
+    targetDeath: {fileID: 4756778478439027489, guid: 036c5663fca8f22458d6a87f6cce0636,
       type: 3}
-    collisionWithTarget: {fileID: 6096114289163283346, guid: 515c22040b551e649a7318776d2dd5b3,
+    collisionWithTarget: {fileID: 1361015140069094175, guid: ca36333113a13444db743d62f9ba99af,
       type: 3}
   OnSetVariable:
     m_PersistentCalls:
