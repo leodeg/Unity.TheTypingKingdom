@@ -3,11 +3,31 @@ using UnityEngine.Events;
 
 class ParticleEffectsManager : MonoBehaviour
 {
-	public ParticleEffectsReferencesScritable particleEffects;
+	[SerializeField] private ParticleEffectsReferencesScritable particleEffects;
+
+	private void Awake()
+	{
+		if (particleEffects.variable.typeSuccess == null)
+			Debug.LogError("Particle effect for [type sucess] is empty!");
+
+		if (particleEffects.variable.typeFailed == null)
+			Debug.LogError("Particle effect for [type failed] is empty!");
+
+		if (particleEffects.variable.completeWord == null)
+			Debug.LogError("Particle effect for [complete word] is empty!");
+
+		if (particleEffects.variable.collisionWithTarget == null)
+			Debug.LogError("Particle effect for [collision with target] is empty!");
+
+		if (particleEffects.variable.targetDeath == null)
+			Debug.LogError("Particle effect for [target death] is empty!");
+	}
 
 	public static void PlayEffectAt(ParticleSystem effect, Vector3 position)
 	{
-		Destroy(Instantiate(effect.gameObject, position, Quaternion.identity), effect.main.startLifetime.constantMax);
+		var particle = Instantiate(effect.gameObject, position, Quaternion.identity);
+		float time = effect.main.duration;
+		Destroy(particle, time);
 	}
 
 	public void PlayTypeSuccess(Transform transform)
